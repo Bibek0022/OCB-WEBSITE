@@ -1,45 +1,108 @@
-<!<!DOCTYPE html>
+
+<!DOCTYPE html>
 <html lang="ne">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OCB Education</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-    
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
-        body { font-family: 'Poppins', sans-serif; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OCB Education</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+body { font-family: Arial; }
+.hidden { display: none; }
+</style>
 </head>
-<body class="bg-gray-50">
 
-    <!-- Login Screen -->
-    <div id="loginScreen" class="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-900 to-blue-700">
-        <div class="bg-white rounded-3xl shadow-2xl p-10 w-full max-w-md mx-4">
-            <div class="text-center mb-8">
-                <div class="w-20 h-20 bg-blue-700 rounded-3xl mx-auto flex items-center justify-center text-white text-5xl font-bold">OCB</div>
-                <h1 class="text-4xl font-bold text-blue-700 mt-6">OCB Education</h1>
-                <p class="text-gray-600 mt-2">Powered by OnlineClassWithBibek</p>
-            </div>
-            
-            <h2 class="text-2xl font-semibold text-center mb-6">लग इन गर्नुहोस्</h2>
-            
-            <input id="email" type="email" placeholder="इमेल" class="w-full px-5 py-4 border rounded-2xl mb-4">
-            <input id="password" type="password" placeholder="पासवर्ड" class="w-full px-5 py-4 border rounded-2xl mb-6">
-            
-            <button onclick="handleLogin()" 
-                    class="w-full py-4 bg-blue-700 text-white font-semibold rounded-2xl text-lg">
-                लग इन गर्नुहोस्
-            </button>
+<body class="bg-gray-100">
 
-            <p class="text-center text-xs text-gray-500 mt-6">
-                Demo User: user@ocb.com / OCB2078<br>
-                Demo Admin: admin@ocb.com / ADMIN2002#
-            </p>
-        </div>
+<!-- LOGIN -->
+<div id="loginScreen" class="min-h-screen flex items-center justify-center bg-blue-700">
+    
+    <div class="bg-white p-8 rounded-2xl w-80 text-center">
+        <h1 class="text-2xl font-bold mb-4 text-blue-700">OCB Education</h1>
+
+        <input id="email" type="text" placeholder="Email"
+        class="w-full p-3 border rounded mb-3">
+
+        <input id="password" type="password" placeholder="Password"
+        class="w-full p-3 border rounded mb-4">
+
+        <button onclick="handleLogin()"
+        class="w-full bg-blue-600 text-white p-3 rounded">
+        Login
+        </button>
+
+        <p id="errorMsg" class="text-red-600 mt-3"></p>
+    </div>
+</div>
+
+<!-- MAIN APP -->
+<div id="mainApp" class="hidden">
+
+    <div class="bg-white p-4 shadow flex justify-between">
+        <h2 class="font-bold text-blue-700">OCB App</h2>
+        <button onclick="logout()" class="bg-red-500 text-white px-4 py-1 rounded">
+            Logout
+        </button>
     </div>
 
+    <div class="p-6">
+
+        <h2 class="text-xl font-bold mb-4">Notes Section</h2>
+
+        <div class="grid grid-cols-2 gap-4">
+
+            <div class="bg-white p-4 rounded shadow">
+                <h3>Account</h3>
+                <button onclick="openPDF('https://example.com/a.pdf')" 
+                class="bg-green-500 text-white px-3 py-2 mt-2 rounded">
+                Download
+                </button>
+            </div>
+
+            <div class="bg-white p-4 rounded shadow">
+                <h3>Economics</h3>
+                <button onclick="openPDF('https://example.com/e.pdf')" 
+                class="bg-green-500 text-white px-3 py-2 mt-2 rounded">
+                Download
+                </button>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<script>
+
+// SIMPLE LOGIN (demo)
+function handleLogin() {
+    const email = document.getElementById("email").value;
+    const pass = document.getElementById("password").value;
+
+    if(email === "user" && pass === "1234"){
+        document.getElementById("loginScreen").style.display = "none";
+        document.getElementById("mainApp").style.display = "block";
+    } else {
+        document.getElementById("errorMsg").innerText = "गलत Login!";
+    }
+}
+
+// LOGOUT
+function logout(){
+    location.reload();
+}
+
+// OPEN PDF
+function openPDF(link){
+    window.open(link, "_blank");
+}
+
+</script>
+
+</body>
+</html>
     <!-- Main App -->
     <div id="mainApp" class="hidden">
         <nav class="bg-white shadow sticky top-0 z-50">
