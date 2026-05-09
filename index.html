@@ -1,214 +1,137 @@
-<!-;<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ne">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OCB - NEB Commerce & BBS Notes</title>
+    <title>OCB Education - Note Portal</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-    
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
         body { font-family: 'Poppins', sans-serif; }
-        .hero-bg { background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.85)), url('https://source.unsplash.com/random/1920x1080/?students,nepal') center/cover; }
+        .category-title { border-left: 5px solid #1d4ed8; padding-left: 15px; margin-bottom: 25px; }
     </style>
 </head>
 <body class="bg-gray-50">
 
-    <!-- Login Screen -->
     <div id="loginScreen" class="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-900 to-blue-700">
-        <div class="bg-white rounded-3xl shadow-2xl p-10 w-full max-w-md mx-4">
-            <div class="text-center mb-8">
-                <div class="w-20 h-20 bg-blue-700 rounded-3xl mx-auto flex items-center justify-center text-white text-5xl font-bold">OCB</div>
-                <h1 class="text-4xl font-bold text-blue-700 mt-6">OCB Education</h1>
-                <p class="text-gray-600 mt-2">NEB & BBS Notes</p>
-            </div>
+        <div class="bg-white rounded-3xl shadow-2xl p-10 w-full max-w-md mx-4 text-center">
+            <div class="w-20 h-20 bg-blue-700 rounded-3xl mx-auto flex items-center justify-center text-white text-5xl font-bold mb-6">OCB</div>
+            <h1 class="text-3xl font-bold text-blue-700 mb-2">OCB Education</h1>
+            <p class="text-gray-500 mb-8">Powered by OnlineClassWithBibek</p>
             
-            <h2 class="text-2xl font-semibold text-center mb-6">लग इन गर्नुहोस्</h2>
-            <input id="email" type="email" placeholder="इमेल" class="w-full px-5 py-4 border rounded-2xl mb-4">
-            <input id="password" type="password" placeholder="पासवर्ड" class="w-full px-5 py-4 border rounded-2xl mb-6">
-            <button onclick="handleLogin()" class="w-full py-4 bg-blue-700 text-white font-semibold rounded-2xl text-lg">लग इन गर्नुहोस्</button>
-            
-            <p class="text-center text-sm text-gray-500 mt-6">
-                User: user@ocb.com / OCB2078<br>
-                Admin: admin@ocb.com / ADMIN2002#
-            </p>
+            <input id="email" type="email" placeholder="" class="w-full px-5 py-4 border rounded-2xl mb-4 outline-none focus:border-blue-600">
+            <input id="password" type="password" placeholder="" class="w-full px-5 py-4 border rounded-2xl mb-6 outline-none focus:border-blue-600">
+            <button onclick="handleLogin()" class="w-full py-4 bg-blue-700 text-white font-semibold rounded-2xl text-lg hover:bg-blue-800 transition">  </button>
         </div>
     </div>
 
-    <!-- Main App -->
-    <div id="mainApp" class="hidden">
-        <nav class="bg-white shadow sticky top-0 z-50">
-            <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
-                <div class="flex items-center gap-3">
-                    <div class="w-12 h-12 bg-blue-700 rounded-3xl flex items-center justify-center text-white text-4xl font-bold">OCB</div>
-                    <h1 class="text-3xl font-bold text-blue-700">OCB</h1>
-                </div>
-                <button onclick="logout()" class="px-6 py-3 bg-red-600 text-white rounded-2xl">लग आउट</button>
-            </div>
-        </nav>
-        }
     <div id="mainApp" class="hidden">
         <nav class="bg-white shadow-md sticky top-0 z-50">
-            <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
+            <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
                 <div class="flex items-center gap-3">
-                    <div class="w-12 h-12 bg-blue-700 rounded-3xl flex items-center justify-center text-white text-4xl font-bold">OCB</div>
-                    <h1 class="text-3xl font-bold text-blue-700">OCB</h1>
+                    <div class="w-10 h-10 bg-blue-700 rounded-xl flex items-center justify-center text-white text-2xl font-bold">OCB</div>
+                    <h1 class="text-2xl font-bold text-blue-700">OCB Education</h1>
                 </div>
-                <button onclick="logout()" class="px-6 py-3 bg-red-600 text-white rounded-2xl">लग आउट</button>
+                <button onclick="logout()" class="px-5 py-2 bg-red-600 text-white rounded-xl hover:bg-red-700 transition"> </button>
             </div>
         </nav>
 
         <div class="max-w-7xl mx-auto px-6 py-12">
-            <h2 class="text-4xl font-bold text-center mb-12">NEB Commerce & BBS Notes</h2>
             <div id="contentArea"></div>
         </div>
     </div>
 
     <script>
-        // Credentials
-        const ADMIN_EMAIL = "admin@ocb.com";
-        const ADMIN_PASS = "ADMIN2002#";
-        const USER_EMAIL = "user@ocb.com";
-        const USER_PASS = "OCB2078";
-
         function handleLogin() {
             const email = document.getElementById('email').value.trim();
             const pass = document.getElementById('password').value.trim();
-
-            if ((email === ADMIN_EMAIL && pass === ADMIN_PASS) || (email === USER_EMAIL && pass === USER_PASS)) {
+            if ((email === "admin@ocb.com" && pass === "ADMIN2002#") || (email === "user@ocb.com" && pass === "OCB2078")) {
                 document.getElementById('loginScreen').classList.add('hidden');
                 document.getElementById('mainApp').classList.remove('hidden');
                 renderContent();
-            } else {
-                alert("गलत इमेल वा पासवर्ड!");
-            }
+            } else { alert("   !"); }
         }
 
-        function logout() {
-            location.reload();
-        }
+        function logout() { location.reload(); }
 
         function renderContent() {
+            const sections = [
+                {
+                    header: "NEB Class 11 (Commerce)",
+                    items: [
+                        { subject: "English", title: "Class 11 English New Course Notes" },
+                        { subject: "Nepali", title: "Class 11 Nepali Sahitya Notes" },
+                        { subject: "Accountancy", title: "Class 11 Accountancy Complete Notes" },
+                        { subject: "Business Studies", title: "Class 11 Business Studies" },
+                        { subject: "Economics", title: "Class 11 Economics Notes" },
+                        { subject: "Business Mathematics", title: "Class 11 Business Mathematics" }
+                    ]
+                },
+                {
+                    header: "NEB Class 12 (Commerce)",
+                    items: [
+                        { subject: "English", title: "Class 12 English New Course Notes" },
+                        { subject: "Nepali", title: "Class 12 Nepali Sahitya" },
+                        { subject: "Accountancy", title: "Class 12 Accountancy Advanced Notes" },
+                        { subject: "Business Studies", title: "Class 12 Business Studies" },
+                        { subject: "Economics", title: "Class 12 Economics Complete Notes" },
+                        { subject: "Marketing", title: "Class 12 Marketing Notes" },
+                        { subject: "Business Mathematics", title: "Class 12 Business Mathematics" }
+                    ]
+                },
+                {
+                    header: "BBS (1st, 2nd & 3rd Year)",
+                    items: [
+                        { subject: "BBS 1st Year", title: "Business Statistics, English, Microeconomics, Accounting, POM" },
+                        { subject: "BBS 2nd Year", title: "Business Comm, Macroeconomics, Cost Acc, Finance, OB & HRM" },
+                        { subject: "BBS 3rd Year", title: "Business Law, Marketing, Environment, Taxation, Entrepreneurship" }
+                    ]
+                },
+                {
+                    header: "BBS 4th Year (Specialization)",
+                    items: [
+                        { subject: "Core Subjects", title: "Entrepreneurship, Research Methods, Final Project" },
+                        { subject: "Accounting Group", title: "Theory, Auditing, Corporate Taxation" },
+                        { subject: "Finance Group", title: "Corporate Finance, Bank Management, Investment" },
+                        { subject: "Marketing Group", title: "Consumer Behavior, Sales, International Marketing" },
+                        { subject: "Management Group", title: "Int'l Business, SME, Strategic Management" }
+                    ]
+                },
+                {
+                    header: "Loksewa & Banking Preparation",
+                    items: [
+                        { subject: "Loksewa", title: "Kharidar, Naayab Subba, Shaakha Adhikrit, TSC" },
+                        { subject: "Banking", title: "NRB, RBB, ADBL, NBL Preparation Notes" },
+                        { subject: "Private Banks", title: "Nabil, NIC Asia, Global IME GK & IQ" }
+                    ]
+                }
+            ];
+
             const contentArea = document.getElementById('contentArea');
-            contentArea.innerHTML = `
-                <h2 class="text-3xl font-bold mb-8 text-blue-700">NEB Class 11 Commerce</h2>
-                <div class="grid md:grid-cols-3 gap-6">
-                    ${["English", "Nepali", "Accountancy", "Business Studies", "Economics", "Business Mathematics"].map(sub => `
-                        <div class="bg-white rounded-3xl p-6 shadow hover:shadow-xl">
-                            <h3 class="font-semibold">${sub}</h3>
-                            <button onclick="alert('📥 ${sub} Notes डाउनलोड हुँदैछ...')" 
-                                    class="mt-6 w-full py-3 bg-green-600 text-white rounded-2xl hover:bg-green-700">PDF डाउनलोड</button>
-                        </div>
-                    `).join('')}
-                </div>
-
-                <h2 class="text-3xl font-bold mt-16 mb-8 text-blue-700">NEB Class 12 Commerce</h2>
-                <div class="grid md:grid-cols-3 gap-6">
-                    ${["English", "Nepali", "Accountancy", "Business Studies", "Economics", "Marketing", "Business Mathematics"].map(sub => `
-                        <div class="bg-white rounded-3xl p-6 shadow hover:shadow-xl">
-                            <h3 class="font-semibold">${sub}</h3>
-                            <button onclick="alert('📥 ${sub} Notes डाउनलोड हुँदैछ...')" 
-                                    class="mt-6 w-full py-3 bg-green-600 text-white rounded-2xl hover:bg-green-700">PDF डाउनलोड</button>
-                        </div>
-                    `).join('')}
-                </div>
-
-                <h2 class="text-3xl font-bold mt-16 mb-8 text-blue-700">BBS (Bachelor of Business Studies)</h2>
-                <div class="space-y-12">
-                    ${[
-                        
-                                       // === NEB Class 11 ===
-            const class11 = [
-                { subject: "English", title: "Class 11 English New Course Notes" },
-                { subject: "Nepali", title: "Class 11 Nepali Sahitya Notes" },
-                { subject: "Accountancy", title: "Class 11 Accountancy Complete Notes" },
-                { subject: "Business Studies", title: "Class 11 Business Studies" },
-                { subject: "Economics", title: "Class 11 Economics Notes" },
-                { subject: "Business Mathematics", title: "Class 11 Business Mathematics" }
-            ];
-
-            // NEB Class 12
-            const class12 = [
-                { subject: "English", title: "Class 12 English New Course Notes" },
-                { subject: "Nepali", title: "Class 12 Nepali Sahitya" },
-                { subject: "Accountancy", title: "Class 12 Accountancy Advanced Notes" },
-                { subject: "Business Studies", title: "Class 12 Business Studies" },
-                { subject: "Economics", title: "Class 12 Economics Complete Notes" },
-                { subject: "Marketing", title: "Class 12 Marketing Notes" },
-                { subject: "Business Mathematics", title: "Class 12 Business Mathematics" }
-            ];
-            // ==================== BBS ALL YEARS ====================
-            const bbsData = {
-                "BBS 1st Year": [
-                    { subject: "Business English", title: "Business English (MGT 201)" },
-                    { subject: "Business Statistics", title: "Business Statistics (MGT 202)" },
-                    { subject: "Microeconomics", title: "Microeconomics for Business (MGT 203)" },
-                    { subject: "Accounting", title: "Accounting for Financial Analysis (MGT 211)" },
-                    { subject: "Principles of Management", title: "Principles of Management (MGT 213)" }
-                ],
-                "BBS 2nd Year": [
-                    { subject: "Business Communication", title: "Business Communication (MGT 205)" },
-                    { subject: "Macroeconomics", title: "Macroeconomics for Business (MGT 206)" },
-                    { subject: "Cost Accounting", title: "Cost and Management Accounting (MGT 212)" },
-                    { subject: "Financial Management", title: "Fundamentals of Financial Management (MGT 215)" },
-                    { subject: "OB & HRM", title: "Organizational Behavior & HRM (MGT 223)" }
-                ],
-                "BBS 3rd Year": [
-                    { subject: "Business Law", title: "Business Law" },
-                    { subject: "Marketing", title: "Fundamentals of Marketing" },
-                    { subject: "Business Environment", title: "Business Environment and Strategy" },
-                    { subject: "Taxation", title: "Taxation and Auditing" },
-                    { subject: "Entrepreneurship", title: "Entrepreneurship and Enterprise Development" }
-                ],
-                // ==== BBS 4th Year ====
-const bbs4thYear = [
-  { subject: "Entrepreneurship", title: "Entrepreneurship and Enterprise Development" },
-  { subject: "Research Methods", title: "Business Research Methods" },
-  { subject: "Final Project", title: "Final Project / Internship" },
-  
-  // Concentration Areas (Choose one group)
-  // Accounting Group
-  { category: "Accounting", subject: "Accounting Theory", title: "Advanced Accounting Theory" },
-  { category: "Accounting", subject: "Auditing", title: "Advanced Auditing and Professional Ethics" },
-  { category: "Accounting", subject: "Taxation", title: "Corporate Taxation and Planning" },
-  
-  // Finance Group
-  { category: "Finance", subject: "Corporate Finance", title: "Fundamentals of Corporate Finance" },
-  { category: "Finance", subject: "Commercial Bank Management", title: "Commercial Bank Management" },
-  { category: "Finance", subject: "Investment", title: "Investment Analysis and Portfolio Management" },
-  
-  // Marketing Group
-  { category: "Marketing", subject: "Consumer Behavior", title: "Consumer Relationship Management" },
-  { category: "Marketing", subject: "Sales", title: "Fundamentals of Selling" },
-  { category: "Marketing", subject: "International Marketing", title: "International Marketing" },
-  
-  // Management Group
-  { category: "Management", subject: "International Business", title: "International Business" },
-  { category: "Management", subject: "SME", title: "Small and Medium Enterprises" },
-  { category: "Management", subject: "Strategic Management", title: "Business Policy and Strategy" }
-];
-                // === Loksewa ===
-                { category: "Loksewa", subject: "Kharidar", title: "Kharidar GK & IQ and Written", link: "#", type: "pdf" },
-                { category: "Loksewa", subject: "Naayab Subba", title: "Naayab Subba Complete Notes", link: "#", type: "pdf" },
-                { category: "Loksewa", subject: "Shaakha Adhikrit", title: "Shaakha Adhikrit Complete Notes", link: "#", type: "pdf" },
-                { category: "Loksewa", subject: "Shikshyak Sewa", title: "Teacher Service Commission (MaBi/NiMaBi) Notes", link: "#", type: "pdf" },
-
-                // === Banking ===
-                { category: "Banking", subject: "NRB", title: "Nepal Rastra Bank Preparation", link: "#", type: "pdf" },
-                { category: "Banking", subject: "RBB", title: "Rastriya Banijya Bank Notes", link: "#", type: "pdf" },
-                { category: "Banking", subject: "ADBL", title: "Agricultural Development Bank", link: "#", type: "pdf" },
-                { category: "Banking", subject: "NBL", title: "Nepal Bank Limited Preparation", link: "#", type: "pdf" },
-                { category: "Banking", subject: "Private Banks", title: "Private Banks (Nabil, NIC, Global) GK", link: "#", type: "pdf" }
- </div>
-                                `).join('')}
+            contentArea.innerHTML = sections.map(sec => `
+                <div class="mb-16">
+                    <h2 class="text-3xl font-bold text-gray-800 category-title">${sec.header}</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        ${sec.items.map(item => `
+                            <div class="bg-white rounded-3xl p-6 shadow-sm border border-gray-100 hover:shadow-xl transition duration-300">
+                                <div class="flex items-center gap-4 mb-4">
+                                    <div class="w-12 h-12 bg-blue-100 text-blue-700 rounded-2xl flex items-center justify-center text-xl">
+                                        <i class="fa-solid fa-file-lines"></i>
+                                    </div>
+                                    <h3 class="font-bold text-lg text-gray-800">${item.subject}</h3>
+                                </div>
+                                <p class="text-gray-500 text-sm mb-6">${item.title}</p>
+                                <button onclick="alert('${item.subject} PDF  ...')" 
+                                        class="w-full py-3 bg-green-600 text-white font-bold rounded-2xl hover:bg-green-700 transition">
+                                    <i class="fa-solid fa-download mr-2"></i> PDF 
+                                </button>
                             </div>
-                        </div>
-                    `).join('')}
+                        `).join('')}
+                    </div>
                 </div>
-            `;
+            `).join('');
         }
     </script>
 </body>
 </html>
-            
