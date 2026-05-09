@@ -3,40 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OCB - Nepal's Smart Learning Platform</title>
+    <title>OCB - नेपालको उत्कृष्ट सिकाइ केन्द्र</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
         body { font-family: 'Poppins', sans-serif; }
-        
         .hero-bg {
-            background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.8)), 
-                        url('https://source.unsplash.com/random/1920x1080/?students,nepal') center/cover;
+            background: linear-gradient(rgba(0,0,0,0.78), rgba(0,0,0,0.85)), 
+                        url('https://source.unsplash.com/random/1920x1080/?nepal,students') center/cover;
         }
-        .card-hover:hover { transform: translateY(-10px); box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.15); }
+        .card-hover:hover { transform: translateY(-12px); box-shadow: 0 25px 30px -10px rgb(0 0 0 / 0.2); }
     </style>
 </head>
 <body class="bg-gray-50">
 
     <!-- Navbar -->
-    <nav class="bg-white shadow-md sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
             <div class="flex items-center gap-3">
-                <div class="w-11 h-11 bg-blue-700 rounded-2xl flex items-center justify-center text-white text-3xl font-bold">OCB</div>
+                <div class="w-12 h-12 bg-blue-700 rounded-3xl flex items-center justify-center text-white text-4xl font-bold">OCB</div>
                 <h1 class="text-3xl font-bold text-blue-700">OCB</h1>
             </div>
             
             <div class="flex items-center gap-4">
-                <button onclick="showLoginModal('user')" 
-                        class="px-6 py-2.5 border border-blue-600 text-blue-600 font-semibold rounded-2xl hover:bg-blue-50">
-                    User Login
-                </button>
-                <button onclick="showLoginModal('admin')" 
-                        class="px-6 py-2.5 bg-blue-700 text-white font-semibold rounded-2xl hover:bg-blue-800">
-                    Admin Login
-                </button>
+                <button onclick="showLoginModal('user')" class="px-6 py-3 border-2 border-blue-700 text-blue-700 font-semibold rounded-2xl hover:bg-blue-50">विद्यार्थी लग इन</button>
+                <button onclick="showLoginModal('admin')" class="px-6 py-3 bg-blue-700 text-white font-semibold rounded-2xl hover:bg-blue-800">एडमिन लग इन</button>
             </div>
         </div>
     </nav>
@@ -45,10 +38,8 @@
     <section class="hero-bg h-screen flex items-center text-white">
         <div class="max-w-7xl mx-auto px-6">
             <div class="max-w-2xl">
-                <h1 class="text-5xl md:text-6xl font-bold leading-tight">
-                      <span class="text-yellow-400"></span>
-                </h1>
-                <p class="mt-6 text-xl">NEB, BBS, Banking  Loksewa     </p>
+                <h1 class="text-5xl md:text-6xl font-bold leading-tight">तपाईंको सपनालाई साकार बनाउने प्लेटफर्म</h1>
+                <p class="mt-6 text-xl">NEB • BBS • Banking • Loksewa</p>
             </div>
         </div>
     </section>
@@ -56,7 +47,7 @@
     <!-- Resources -->
     <section id="resources" class="py-20 bg-gray-100">
         <div class="max-w-7xl mx-auto px-6">
-            <h2 class="text-4xl font-bold text-center mb-12"> </h2>
+            <h2 class="text-4xl font-bold text-center mb-12">उपलब्ध सामग्रीहरु</h2>
             <div id="resourcesContainer" class="grid md:grid-cols-3 gap-8"></div>
         </div>
     </section>
@@ -64,39 +55,35 @@
     <!-- Login Modal -->
     <div id="loginModal" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center z-50">
         <div class="bg-white rounded-3xl p-8 w-full max-w-md mx-4">
-            <h2 id="modalTitle" class="text-2xl font-bold text-center mb-6">Login</h2>
-            <input id="email" type="email" placeholder="Email" class="w-full px-5 py-4 border rounded-2xl mb-4">
-            <input id="password" type="password" placeholder="Password" class="w-full px-5 py-4 border rounded-2xl mb-6">
-            <button onclick="handleLogin()" class="w-full py-4 bg-blue-700 text-white font-semibold rounded-2xl">Login</button>
-            <button onclick="hideLoginModal()" class="mt-4 w-full text-gray-500">Cancel</button>
+            <h2 id="modalTitle" class="text-2xl font-bold text-center mb-6">लग इन गर्नुहोस्</h2>
+            <input id="email" type="email" placeholder="इमेल" class="w-full px-5 py-4 border rounded-2xl mb-4">
+            <input id="password" type="password" placeholder="पासवर्ड" class="w-full px-5 py-4 border rounded-2xl mb-6">
+            <button onclick="handleLogin()" class="w-full py-4 bg-blue-700 text-white font-semibold rounded-2xl">लग इन</button>
+            <button onclick="hideLoginModal()" class="mt-4 w-full text-gray-500">रद्द गर्नुहोस्</button>
         </div>
     </div>
 
     <!-- Admin Dashboard -->
     <div id="adminDashboard" class="hidden min-h-screen bg-gray-100">
         <div class="bg-white p-6 flex justify-between items-center shadow sticky top-0">
-            <h1 class="text-3xl font-bold text-blue-700">OCB Admin Panel</h1>
-            <button onclick="logout()" class="px-6 py-3 bg-red-600 text-white rounded-2xl">Logout</button>
+            <h1 class="text-3xl font-bold text-blue-700">OCB एडमिन प्यानल</h1>
+            <button onclick="logout()" class="px-6 py-3 bg-red-600 text-white rounded-2xl">लग आउट</button>
         </div>
-        
         <div class="max-w-7xl mx-auto px-6 py-10">
             <div class="grid md:grid-cols-2 gap-10">
-                <!-- Add Note / PDF -->
                 <div class="bg-white p-8 rounded-3xl shadow">
-                    <h2 class="text-2xl font-bold mb-6">   / PDF </h2>
-                    <input id="noteTitle" placeholder="" class="w-full px-5 py-4 border rounded-2xl mb-4">
-                    <input id="noteCategory" placeholder="Category (NEB, BBS, Banking, Loksewa)" class="w-full px-5 py-4 border rounded-2xl mb-4">
-                    <input id="pdfFileName" placeholder="PDF File Name (e.g. class12_english.pdf)" class="w-full px-5 py-4 border rounded-2xl mb-6">
-                    <button onclick="addNote()" class="w-full py-4 bg-green-600 text-white rounded-2xl font-semibold"> </button>
+                    <h2 class="text-2xl font-bold mb-6">📄 नयाँ PDF / नोट थप्नुहोस्</h2>
+                    <input id="noteTitle" placeholder="शीर्षक" class="w-full px-5 py-4 border rounded-2xl mb-4">
+                    <input id="noteCategory" placeholder="कोटि (NEB, BBS, Banking, Loksewa)" class="w-full px-5 py-4 border rounded-2xl mb-4">
+                    <input id="pdfLink" placeholder="PDF Direct Link (वा फाइल नाम)" class="w-full px-5 py-4 border rounded-2xl mb-6">
+                    <button onclick="addPDF()" class="w-full py-4 bg-green-600 text-white rounded-2xl font-semibold">PDF थप्नुहोस्</button>
                 </div>
 
-                <!-- Add Video -->
                 <div class="bg-white p-8 rounded-3xl shadow">
-                    <h2 class="text-2xl font-bold mb-6">   </h2>
-                    <input id="videoTitle" placeholder=" " class="w-full px-5 py-4 border rounded-2xl mb-4">
-                    <input id="videoUrl" placeholder="YouTube Link" class="w-full px-5 py-4 border rounded-2xl mb-4">
-                    <input id="videoCategory" placeholder="Category" class="w-full px-5 py-4 border rounded-2xl mb-6">
-                    <button onclick="addVideo()" class="w-full py-4 bg-blue-700 text-white rounded-2xl font-semibold"> </button>
+                    <h2 class="text-2xl font-bold mb-6">🎥 नयाँ भिडियो थप्नुहोस्</h2>
+                    <input id="videoTitle" placeholder="भिडियो शीर्षक" class="w-full px-5 py-4 border rounded-2xl mb-4">
+                    <input id="videoUrl" placeholder="YouTube Link" class="w-full px-5 py-4 border rounded-2xl mb-6">
+                    <button onclick="addVideo()" class="w-full py-4 bg-blue-700 text-white rounded-2xl font-semibold">भिडियो थप्नुहोस्</button>
                 </div>
             </div>
         </div>
@@ -105,17 +92,16 @@
     <script>
         let resources = [];
 
-        // Hardcoded Credentials
         const ADMIN_EMAIL = "admin@ocb.com";
         const ADMIN_PASS = "ADMIN2002#";
         const USER_EMAIL = "user@ocb.com";
         const USER_PASS = "OCB2078";
 
-        let currentUser = null; // 'user' or 'admin'
+        let currentUser = null;
 
         function showLoginModal(type) {
             document.getElementById('loginModal').classList.remove('hidden');
-            document.getElementById('modalTitle').textContent = type === 'admin' ? 'Admin Login' : 'User Login';
+            document.getElementById('modalTitle').textContent = type === 'admin' ? 'एडमिन लग इन' : 'विद्यार्थी लग इन';
         }
 
         function hideLoginModal() {
@@ -124,21 +110,18 @@
 
         function handleLogin() {
             const email = document.getElementById('email').value.trim();
-            const password = document.getElementById('password').value.trim();
+            const pass = document.getElementById('password').value.trim();
 
-            if (email === ADMIN_EMAIL && password === ADMIN_PASS) {
+            if (email === ADMIN_EMAIL && pass === ADMIN_PASS) {
                 currentUser = 'admin';
                 hideLoginModal();
                 document.getElementById('adminDashboard').classList.remove('hidden');
-                alert("Admin Login  !");
-            } 
-            else if (email === USER_EMAIL && password === USER_PASS) {
+            } else if (email === USER_EMAIL && pass === USER_PASS) {
                 currentUser = 'user';
                 hideLoginModal();
-                alert("User Login  ! Welcome to OCB");
-            } 
-            else {
-                alert(" Email  Password!");
+                alert("स्वागत छ! OCB मा सफल लग इन भयो।");
+            } else {
+                alert("गलत इमेल वा पासवर्ड!");
             }
         }
 
@@ -147,55 +130,52 @@
             document.getElementById('adminDashboard').classList.add('hidden');
         }
 
-        function addNote() {
-            if (currentUser !== 'admin') return alert("Admin    !");
-
+        // Add PDF with real download capability
+        function addPDF() {
+            if (currentUser !== 'admin') return alert("एडमिनले मात्र थप्न सक्छन्");
+            
             const title = document.getElementById('noteTitle').value;
             const category = document.getElementById('noteCategory').value || "General";
-            const fileName = document.getElementById('pdfFileName').value || "document.pdf";
+            let link = document.getElementById('pdfLink').value;
 
-            if (!title) return alert(" ");
+            if (!title) return alert("शीर्षक लेख्नुहोस्");
+
+            // यदि लिङ्क खाली छ भने sample PDF प्रयोग गर
+            if (!link) {
+                link = "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf";
+            }
 
             resources.push({
                 type: "pdf",
                 title: title,
                 category: category,
-                file: fileName,
-                time: new Date().toLocaleDateString()
+                downloadLink: link
             });
 
             renderResources();
-            clearForm();
+            clearForms();
         }
 
         function addVideo() {
-            if (currentUser !== 'admin') return alert("Admin    !");
-
+            if (currentUser !== 'admin') return alert("एडमिनले मात्र थप्न सक्छन्");
+            
             const title = document.getElementById('videoTitle').value;
             const url = document.getElementById('videoUrl').value;
-            const category = document.getElementById('videoCategory').value || "General";
+            const category = "Video";
 
-            if (!title || !url) return alert("    ");
+            if (!title || !url) return alert("शीर्षक र लिङ्क भर्नुहोस्");
 
-            resources.push({
-                type: "video",
-                title: title,
-                url: url,
-                category: category,
-                time: new Date().toLocaleDateString()
-            });
-
+            resources.push({ type: "video", title, url, category });
             renderResources();
-            clearForm();
+            clearForms();
         }
 
-        function clearForm() {
+        function clearForms() {
             document.getElementById('noteTitle').value = '';
             document.getElementById('noteCategory').value = '';
-            document.getElementById('pdfFileName').value = '';
+            document.getElementById('pdfLink').value = '';
             document.getElementById('videoTitle').value = '';
             document.getElementById('videoUrl').value = '';
-            document.getElementById('videoCategory').value = '';
         }
 
         function renderResources() {
@@ -208,29 +188,28 @@
 
                 if (item.type === "pdf") {
                     div.innerHTML = `
-                        <div class="flex items-start gap-4">
-                            <div class="text-4xl"></div>
+                        <div class="flex gap-5">
+                            <span class="text-5xl">📕</span>
                             <div class="flex-1">
-                                <span class="text-green-600 text-sm">${item.category}</span>
-                                <h3 class="font-semibold text-lg mt-1">${item.title}</h3>
-                                <p class="text-sm text-gray-500">${item.file}</p>
-                                <button onclick="downloadPDF('${item.file}')" 
-                                        class="mt-4 px-5 py-2 bg-green-600 text-white text-sm rounded-xl hover:bg-green-700">
-                                    Download PDF
-                                </button>
+                                <span class="text-green-600">${item.category}</span>
+                                <h3 class="font-semibold text-lg mt-2">${item.title}</h3>
+                                <a href="${item.downloadLink}" target="_blank" download 
+                                   class="mt-6 inline-block px-6 py-3 bg-green-600 text-white rounded-2xl hover:bg-green-700">
+                                    📥 PDF डाउनलोड गर्नुहोस्
+                                </a>
                             </div>
                         </div>
                     `;
                 } else {
                     div.innerHTML = `
-                        <div class="flex items-start gap-4">
-                            <div class="text-4xl"></div>
+                        <div class="flex gap-5">
+                            <span class="text-5xl">🎥</span>
                             <div class="flex-1">
-                                <span class="text-blue-600 text-sm">${item.category}</span>
-                                <h3 class="font-semibold text-lg mt-1">${item.title}</h3>
+                                <span class="text-blue-600">${item.category}</span>
+                                <h3 class="font-semibold text-lg mt-2">${item.title}</h3>
                                 <a href="${item.url}" target="_blank" 
-                                   class="mt-4 inline-block px-5 py-2 bg-blue-600 text-white text-sm rounded-xl hover:bg-blue-700">
-                                    Watch Video 
+                                   class="mt-6 inline-block px-6 py-3 bg-blue-700 text-white rounded-2xl hover:bg-blue-800">
+                                    ▶️ भिडियो हेर्नुहोस्
                                 </a>
                             </div>
                         </div>
@@ -240,14 +219,15 @@
             });
         }
 
-        function downloadPDF(filename) {
-            alert(`Downloading: ${filename}\n(   ,   )`);
-        }
-
-        // Close modal when clicking outside
-        document.getElementById('loginModal').addEventListener('click', (e) => {
-            if (e.target === document.getElementById('loginModal')) hideLoginModal();
-        });
+        // Initial Sample Resources
+        window.onload = () => {
+            resources = [
+                { type: "pdf", title: "Class 12 English Notes 2083", category: "NEB", downloadLink: "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf" },
+                { type: "pdf", title: "Banking GK & Current Affairs", category: "Banking", downloadLink: "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf" },
+                { type: "video", title: "Loksewa Preparation - GK Class", category: "Loksewa", url: "https://www.youtube.com/embed/dQw4w9wgxcq" }
+            ];
+            renderResources();
+        };
     </script>
 </body>
 </html>
