@@ -3,102 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OCB - Nepal's Smart Learning Platform</title>
+    <title>OCB Education</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
         body { font-family: 'Poppins', sans-serif; }
-        .hero-bg { background: linear-gradient(rgba(0,0,0,0.82), rgba(0,0,0,0.88)), url('https://source.unsplash.com/random/1920x1080/?nepal,students') center/cover; }
-        .notice-bar { animation: marquee 45s linear infinite; }
-        @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-100%); } }
     </style>
 </head>
 <body class="bg-gray-50">
 
-    <!-- Login Screen -->
+    <!-- ==================== LOGIN SCREEN ==================== -->
     <div id="loginScreen" class="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-900 to-blue-700">
         <div class="bg-white rounded-3xl shadow-2xl p-10 w-full max-w-md mx-4">
             <div class="text-center mb-8">
                 <div class="flex justify-center gap-4">
-                    <div class="w-16 h-16 bg-blue-700 rounded-3xl flex items-center justify-center text-white text-5xl font-bold">OCB</div>
-                    <div class="w-16 h-16 bg-red-600 rounded-3xl flex items-center justify-center text-white text-xl font-bold">Bibek</div>
+                    <div class="w-20 h-20 bg-blue-700 rounded-3xl flex items-center justify-center text-white text-5xl font-bold">OCB</div>
                 </div>
                 <h1 class="text-4xl font-bold text-blue-700 mt-6">OCB Education</h1>
-                <p class="text-gray-600">Powered by OnlineClassWithBibek</p>
+                <p class="text-gray-600 mt-2">Powered by OnlineClassWithBibek</p>
             </div>
             
-            <h2 class="text-2xl font-semibold text-center mb-6">  </h2>
-            <input id="email" type="email" placeholder="" class="w-full px-5 py-4 border rounded-2xl mb-4">
-            <input id="password" type="password" placeholder="" class="w-full px-5 py-4 border rounded-2xl mb-6">
-            <button onclick="handleLogin()" class="w-full py-4 bg-blue-700 text-white font-semibold rounded-2xl text-lg">  </button>
+            <h2 class="text-2xl font-semibold text-center mb-6">लग इन गर्नुहोस्</h2>
             
-            <p class="text-center text-sm text-gray-500 mt-6">
-                User: user@ocb.com / OCB2078<br>
-                Admin: admin@ocb.com / ADMIN2002#
-            </p>
+            <input id="email" type="email" placeholder="इमेल" 
+                   class="w-full px-5 py-4 border rounded-2xl mb-4 focus:outline-none focus:border-blue-600">
+            
+            <input id="password" type="password" placeholder="पासवर्ड" 
+                   class="w-full px-5 py-4 border rounded-2xl mb-6 focus:outline-none focus:border-blue-600">
+            
+            <button onclick="handleLogin()" 
+                    class="w-full py-4 bg-blue-700 text-white font-semibold rounded-2xl text-lg hover:bg-blue-800">
+                लग इन गर्नुहोस्
+            </button>
         </div>
     </div>
 
-    <!-- Main App -->
+    <!-- ==================== MAIN APP ==================== -->
     <div id="mainApp" class="hidden">
         <nav class="bg-white shadow-md sticky top-0 z-50">
-            <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-                <div class="flex items-center gap-4">
-                    <div class="w-11 h-11 bg-blue-700 rounded-3xl flex items-center justify-center text-white text-4xl font-bold">OCB</div>
+            <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
+                <div class="flex items-center gap-3">
+                    <div class="w-12 h-12 bg-blue-700 rounded-3xl flex items-center justify-center text-white text-4xl font-bold">OCB</div>
                     <h1 class="text-3xl font-bold text-blue-700">OCB</h1>
                 </div>
-                <button onclick="logout()" class="px-6 py-3 bg-red-600 text-white rounded-2xl"> </button>
+                <button onclick="logout()" class="px-6 py-3 bg-red-600 text-white rounded-2xl">लग आउट</button>
             </div>
         </nav>
 
-        <div class="bg-yellow-400 py-3 text-black font-medium overflow-hidden">
-            <div class="notice-bar whitespace-nowrap">
-                 NEB Class 12 New Batch  | OnlineClassWithBibek Live Class     | BBS 4th Year Notes  | Loksewa & Banking Preparation Giveaway   |
-            </div>
-        </div>
-
         <div class="max-w-7xl mx-auto px-6 py-12">
-            <h2 class="text-4xl font-bold text-center mb-12"> - New Syllabus </h2>
-            <div id="contentArea" class="space-y-20"></div>
-        </div>
-    </div>
-
-    <!-- Admin Button -->
-    <button id="adminBtn" onclick="toggleAdminModal()" 
-            class="hidden fixed bottom-8 right-8 w-16 h-16 bg-blue-700 text-white text-4xl rounded-full shadow-2xl flex items-center justify-center hover:bg-blue-800">
-        +
-    </button>
-
-    <!-- Admin Modal -->
-    <div id="adminModal" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center z-50">
-        <div class="bg-white rounded-3xl p-8 w-full max-w-lg mx-4">
-            <h2 class="text-2xl font-bold mb-6">  </h2>
-            <select id="mainCategory" class="w-full px-5 py-4 border rounded-2xl mb-4">
-                <option value="NEB11">NEB Class 11</option>
-                <option value="NEB12">NEB Class 12</option>
-                <option value="BBS1">BBS 1st Year</option>
-                <option value="BBS2">BBS 2nd Year</option>
-                <option value="BBS3">BBS 3rd Year</option>
-                <option value="BBS4">BBS 4th Year</option>
-                <option value="Loksewa">Loksewa</option>
-                <option value="Banking">Banking</option>
-            </select>
-            <input id="subject" placeholder="Subject / Section" class="w-full px-5 py-4 border rounded-2xl mb-4">
-            <input id="title" placeholder=" /  " class="w-full px-5 py-4 border rounded-2xl mb-4">
-            <input id="link" placeholder="PDF Link  YouTube Link" class="w-full px-5 py-4 border rounded-2xl mb-6">
-            <div class="flex gap-4">
-                <button onclick="addResource()" class="flex-1 py-4 bg-green-600 text-white rounded-2xl"></button>
-                <button onclick="toggleAdminModal()" class="flex-1 py-4 bg-gray-300 rounded-2xl"> </button>
-            </div>
+            <h2 class="text-4xl font-bold text-center mb-12">NEB Commerce & BBS Notes</h2>
+            <div id="contentArea"></div>
         </div>
     </div>
 
     <script>
-        let resources = [];
-        let currentUser = null;
-
+        // Credentials
         const ADMIN_EMAIL = "admin@ocb.com";
         const ADMIN_PASS = "ADMIN2002#";
         const USER_EMAIL = "user@ocb.com";
@@ -109,81 +70,48 @@
             const pass = document.getElementById('password').value.trim();
 
             if ((email === ADMIN_EMAIL && pass === ADMIN_PASS) || (email === USER_EMAIL && pass === USER_PASS)) {
-                currentUser = email === ADMIN_EMAIL ? 'admin' : 'user';
                 document.getElementById('loginScreen').classList.add('hidden');
                 document.getElementById('mainApp').classList.remove('hidden');
-                if (currentUser === 'admin') document.getElementById('adminBtn').classList.remove('hidden');
                 renderContent();
             } else {
-                alert("   !");
+                alert("गलत इमेल वा पासवर्ड!");
             }
         }
 
-        function logout() { location.reload(); }
-        function toggleAdminModal() { document.getElementById('adminModal').classList.toggle('hidden'); }
-
-        function addResource() {
-            const category = document.getElementById('mainCategory').value;
-            const subject = document.getElementById('subject').value;
-            const title = document.getElementById('title').value;
-            const link = document.getElementById('link').value;
-
-            if (!subject || !title || !link) return alert("  !");
-
-            resources.push({ category, subject, title, link, type: link.includes("youtu") ? "video" : "pdf" });
-            toggleAdminModal();
-            renderContent();
+        function logout() {
+            location.reload();
         }
 
         function renderContent() {
-            const container = document.getElementById('contentArea');
-            container.innerHTML = '';
-
-            const categories = {
-                "NEB11": "NEB Class 11 (New Syllabus)",
-                "NEB12": "NEB Class 12 (New Syllabus)",
-                "BBS1": "BBS 1st Year",
-                "BBS2": "BBS 2nd Year",
-                "BBS3": "BBS 3rd Year",
-                "BBS4": "BBS 4th Year",
-                "Loksewa": "Loksewa Preparation",
-                "Banking": "Banking Preparation"
-            };
-
-            Object.keys(categories).forEach(key => {
-                const filtered = resources.filter(r => r.category === key);
-                
-                let html = `
-                    <div>
-                        <h2 class="text-3xl font-bold mb-8 text-blue-700">${categories[key]}</h2>
-                        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                `;
-
-                filtered.forEach(item => {
-                    html += `
-                        <div class="bg-white rounded-3xl p-6 shadow hover:shadow-xl transition-all">
-                            <p class="text-sm font-medium text-blue-600">${item.subject}</p>
-                            <h3 class="font-semibold mt-2 text-lg">${item.title}</h3>
-                            <a href="${item.link}" target="_blank" 
-                               class="mt-6 block w-full text-center py-3.5 rounded-2xl ${item.type === 'pdf' ? 'bg-green-600' : 'bg-red-600'} text-white font-medium">
-                                ${item.type === 'pdf' ? ' PDF  ' : '  '}
-                            </a>
+            const contentArea = document.getElementById('contentArea');
+            contentArea.innerHTML = `
+                <h2 class="text-3xl font-bold mb-8 text-blue-700">NEB Class 11 Commerce</h2>
+                <div class="grid md:grid-cols-3 gap-6">
+                    ${["English", "Nepali", "Accountancy", "Business Studies", "Economics", "Business Mathematics"].map(sub => `
+                        <div class="bg-white rounded-3xl p-6 shadow hover:shadow-xl">
+                            <h3 class="font-semibold">${sub}</h3>
+                            <button onclick="alert('📥 ${sub} Notes डाउनलोड हुँदैछ...')" 
+                                    class="mt-6 w-full py-3 bg-green-600 text-white rounded-2xl hover:bg-green-700">PDF डाउनलोड</button>
                         </div>
-                    `;
-                });
+                    `).join('')}
+                </div>
 
-                if (filtered.length === 0) {
-                    html += `<p class="col-span-3 text-center text-gray-400 py-12">     </p>`;
-                }
-                html += `</div></div>`;
-                container.innerHTML += html;
-            });
-        }
+                <h2 class="text-3xl font-bold mt-16 mb-8 text-blue-700">NEB Class 12 Commerce</h2>
+                <div class="grid md:grid-cols-3 gap-6">
+                    ${["English", "Nepali", "Accountancy", "Business Studies", "Economics", "Marketing", "Business Mathematics"].map(sub => `
+                        <div class="bg-white rounded-3xl p-6 shadow hover:shadow-xl">
+                            <h3 class="font-semibold">${sub}</h3>
+                            <button onclick="alert('📥 ${sub} Notes डाउनलोड हुँदैछ...')" 
+                                    class="mt-6 w-full py-3 bg-green-600 text-white rounded-2xl hover:bg-green-700">PDF डाउनलोड</button>
+                        </div>
+                    `).join('')}
+                </div>
 
-        // ==================== SAMPLE DATA ( Subject ) ====================
-        window.onload = () => {
-            resources = [
-                // === NEB Class 11 ===
+                <h2 class="text-3xl font-bold mt-16 mb-8 text-blue-700">BBS (Bachelor of Business Studies)</h2>
+                <div class="space-y-12">
+                    ${[
+                        
+                                       // === NEB Class 11 ===
             const class11 = [
                 { subject: "English", title: "Class 11 English New Course Notes" },
                 { subject: "Nepali", title: "Class 11 Nepali Sahitya Notes" },
@@ -265,8 +193,15 @@ const bbs4thYear = [
                 { category: "Banking", subject: "ADBL", title: "Agricultural Development Bank", link: "#", type: "pdf" },
                 { category: "Banking", subject: "NBL", title: "Nepal Bank Limited Preparation", link: "#", type: "pdf" },
                 { category: "Banking", subject: "Private Banks", title: "Private Banks (Nabil, NIC, Global) GK", link: "#", type: "pdf" }
-            ];
-        };
+ </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+        }
     </script>
 </body>
 </html>
+            
