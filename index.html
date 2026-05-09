@@ -1,136 +1,189 @@
 <!DOCTYPE html>
-<html lang="ne">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OCB Education - Note Portal</title>
+    <title>OCB Education - Dashboard</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
         body { font-family: 'Poppins', sans-serif; }
-        .category-title { border-left: 5px solid #1d4ed8; padding-left: 15px; margin-bottom: 25px; }
+        .sidebar { transition: all 0.3s; width: 0; overflow: hidden; }
+        .sidebar.active { width: 280px; }
+        .glass { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); }
     </style>
 </head>
-<body class="bg-gray-50">
+<body class="bg-gray-100 min-h-screen">
 
-    <div id="loginScreen" class="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-900 to-blue-700">
-        <div class="bg-white rounded-3xl shadow-2xl p-10 w-full max-w-md mx-4 text-center">
-            <div class="w-20 h-20 bg-blue-700 rounded-3xl mx-auto flex items-center justify-center text-white text-5xl font-bold mb-6">OCB</div>
-            <h1 class="text-3xl font-bold text-blue-700 mb-2">OCB Education</h1>
-            <p class="text-gray-500 mb-8">Powered by OnlineClassWithBibek</p>
-            
-            <input id="email" type="email" placeholder="" class="w-full px-5 py-4 border rounded-2xl mb-4 outline-none focus:border-blue-600">
-            <input id="password" type="password" placeholder="" class="w-full px-5 py-4 border rounded-2xl mb-6 outline-none focus:border-blue-600">
-            <button onclick="handleLogin()" class="w-full py-4 bg-blue-700 text-white font-semibold rounded-2xl text-lg hover:bg-blue-800 transition">  </button>
+    <div id="loginPage" class="fixed inset-0 z-[100] flex items-center justify-center bg-blue-900 p-4">
+        <div class="bg-white p-8 rounded-3xl shadow-2xl w-full max-w-md text-center">
+            <div class="w-20 h-20 bg-blue-700 rounded-2xl mx-auto flex items-center justify-center text-white text-4xl font-bold mb-4 shadow-lg">OCB</div>
+            <h1 class="text-2xl font-bold text-gray-800">OCB Education Portal</h1>
+            <p class="text-gray-500 mb-8">Login to continue</p>
+            <input id="loginEmail" type="email" placeholder="Email (admin@ocb.com)" class="w-full p-4 border rounded-2xl mb-4 outline-none">
+            <input id="loginPass" type="password" placeholder="Password" class="w-full p-4 border rounded-2xl mb-6 outline-none">
+            <button onclick="checkLogin()" class="w-full py-4 bg-blue-700 text-white font-bold rounded-2xl hover:bg-blue-800 shadow-lg transition">Login</button>
         </div>
     </div>
 
-    <div id="mainApp" class="hidden">
-        <nav class="bg-white shadow-md sticky top-0 z-50">
-            <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 bg-blue-700 rounded-xl flex items-center justify-center text-white text-2xl font-bold">OCB</div>
-                    <h1 class="text-2xl font-bold text-blue-700">OCB Education</h1>
-                </div>
-                <button onclick="logout()" class="px-5 py-2 bg-red-600 text-white rounded-xl hover:bg-red-700 transition"> </button>
+    <div id="dashboard" class="hidden flex h-screen overflow-hidden">
+        
+        <div id="sidebar" class="sidebar bg-blue-900 text-white flex-shrink-0 z-50">
+            <div class="p-6">
+                <h2 class="text-2xl font-bold mb-10 border-b border-blue-800 pb-4">Study Menu</h2>
+                <nav class="space-y-2 text-lg">
+                    <button onclick="showSection('noticeBoard')" class="w-full text-left p-3 hover:bg-blue-800 rounded-xl"><i class="fa-solid fa-bullhorn mr-3"></i> Dashboard</button>
+                    <div class="pt-4 pb-2 text-xs text-blue-400 uppercase tracking-widest">NEB Sections</div>
+                    <button onclick="showSubSection('neb11')" class="w-full text-left p-3 hover:bg-blue-800 rounded-xl ml-2"><i class="fa-solid fa-graduation-cap mr-3"></i> Class 11</button>
+                    <button onclick="showSubSection('neb12')" class="w-full text-left p-3 hover:bg-blue-800 rounded-xl ml-2"><i class="fa-solid fa-graduation-cap mr-3"></i> Class 12</button>
+                    <div class="pt-4 pb-2 text-xs text-blue-400 uppercase tracking-widest">Banking</div>
+                    <button onclick="showSubSection('nrb')" class="w-full text-left p-3 hover:bg-blue-800 rounded-xl ml-2"><i class="fa-solid fa-building-columns mr-3"></i> NRB</button>
+                    <button onclick="showSubSection('rbb')" class="w-full text-left p-3 hover:bg-blue-800 rounded-xl ml-2"><i class="fa-solid fa-building-columns mr-3"></i> RBB</button>
+                    <button onclick="showSection('videos')" class="w-full text-left p-3 mt-6 hover:bg-blue-800 rounded-xl"><i class="fa-solid fa-play mr-3"></i> Video Classes</button>
+                </nav>
             </div>
-        </nav>
+        </div>
 
-        <div class="max-w-7xl mx-auto px-6 py-12">
-            <div id="contentArea"></div>
+        <div class="flex-1 flex flex-col overflow-hidden">
+            <header class="bg-white border-b p-4 flex justify-between items-center shadow-sm">
+                <button onclick="toggleSidebar()" class="w-12 h-12 bg-gray-100 rounded-xl flex items-center justify-center hover:bg-gray-200">
+                    <i class="fa-solid fa-bars text-xl"></i>
+                </button>
+                <div id="adminBadge" class="hidden px-4 py-1 bg-yellow-100 text-yellow-700 rounded-full text-sm font-bold">Admin Mode</div>
+                <button onclick="location.reload()" class="text-red-500 font-bold px-4">Logout</button>
+            </header>
+
+            <main class="flex-1 overflow-y-auto p-6 bg-gray-50">
+                
+                <div id="noticeBoard" class="section-view space-y-6">
+                    <div class="flex justify-between items-center">
+                        <h2 class="text-3xl font-bold text-gray-800">Notice & Live Classes</h2>
+                        <button id="addNoticeBtn" class="admin-only hidden px-4 py-2 bg-blue-600 text-white rounded-xl">+ Add Notice</button>
+                    </div>
+                    <div id="noticeList" class="grid gap-4">
+                        <div class="bg-white p-6 rounded-3xl border-l-8 border-green-500 shadow-sm">
+                            <h3 class="font-bold text-xl">Welcome to OCB Education Portal!</h3>
+                            <p class="text-gray-600 mt-2">Check the sidebar for NEB 11/12 and Banking Notes.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="contentSection" class="section-view hidden space-y-8">
+                    <div class="flex justify-between items-center">
+                        <h2 id="currentCategory" class="text-3xl font-bold text-blue-700">Category Name</h2>
+                        <button id="uploadBtn" class="admin-only hidden px-6 py-3 bg-green-600 text-white rounded-2xl font-bold shadow-lg">+ Upload Note</button>
+                    </div>
+                    <div id="fileList" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        </div>
+                </div>
+
+                <div id="videos" class="section-view hidden">
+                    <h2 class="text-3xl font-bold mb-8">Video Lessons (YouTube)</h2>
+                    <div id="videoList" class="grid md:grid-cols-3 gap-6">
+                        </div>
+                </div>
+
+            </main>
+        </div>
+    </div>
+
+    <div id="uploadModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-[200] flex items-center justify-center p-4">
+        <div class="bg-white p-8 rounded-3xl w-full max-w-lg shadow-2xl">
+            <h2 class="text-2xl font-bold mb-6">Upload New Resource</h2>
+            <div class="space-y-4">
+                <input id="fileTitle" type="text" placeholder="Note Title (e.g. Accountancy Unit 1)" class="w-full p-4 border rounded-xl outline-none">
+                <input id="fileLink" type="text" placeholder="Google Drive Link or URL" class="w-full p-4 border rounded-xl outline-none">
+                <div class="flex gap-4">
+                    <button onclick="closeModal()" class="flex-1 py-4 bg-gray-200 rounded-xl font-bold">Cancel</button>
+                    <button onclick="saveNote()" class="flex-1 py-4 bg-blue-700 text-white rounded-xl font-bold shadow-md">Upload</button>
+                </div>
+            </div>
         </div>
     </div>
 
     <script>
-        function handleLogin() {
-            const email = document.getElementById('email').value.trim();
-            const pass = document.getElementById('password').value.trim();
-            if ((email === "admin@ocb.com" && pass === "ADMIN2002#") || (email === "user@ocb.com" && pass === "OCB2078")) {
-                document.getElementById('loginScreen').classList.add('hidden');
-                document.getElementById('mainApp').classList.remove('hidden');
-                renderContent();
-            } else { alert("   !"); }
+        let isAdmin = false;
+        let activeCategory = 'neb12';
+
+        function checkLogin() {
+            const email = document.getElementById('loginEmail').value;
+            const pass = document.getElementById('loginPass').value;
+
+            if(email === 'admin@ocb.com' && pass === 'ADMIN2002#') {
+                isAdmin = true;
+                document.querySelectorAll('.admin-only').forEach(el => el.classList.remove('hidden'));
+                document.getElementById('adminBadge').classList.remove('hidden');
+            } else if (email === 'user@ocb.com' && pass === 'OCB2078') {
+                isAdmin = false;
+            } else {
+                alert("Incorrect Credentials!"); return;
+            }
+            document.getElementById('loginPage').classList.add('hidden');
+            document.getElementById('dashboard').classList.remove('hidden');
+            showSection('noticeBoard');
         }
 
-        function logout() { location.reload(); }
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('active');
+        }
 
-        function renderContent() {
-            const sections = [
-                {
-                    header: "NEB Class 11 (Commerce)",
-                    items: [
-                        { subject: "English", title: "Class 11 English New Course Notes" },
-                        { subject: "Nepali", title: "Class 11 Nepali Sahitya Notes" },
-                        { subject: "Accountancy", title: "Class 11 Accountancy Complete Notes" },
-                        { subject: "Business Studies", title: "Class 11 Business Studies" },
-                        { subject: "Economics", title: "Class 11 Economics Notes" },
-                        { subject: "Business Mathematics", title: "Class 11 Business Mathematics" }
-                    ]
-                },
-                {
-                    header: "NEB Class 12 (Commerce)",
-                    items: [
-                        { subject: "English", title: "Class 12 English New Course Notes" },
-                        { subject: "Nepali", title: "Class 12 Nepali Sahitya" },
-                        { subject: "Accountancy", title: "Class 12 Accountancy Advanced Notes" },
-                        { subject: "Business Studies", title: "Class 12 Business Studies" },
-                        { subject: "Economics", title: "Class 12 Economics Complete Notes" },
-                        { subject: "Marketing", title: "Class 12 Marketing Notes" },
-                        { subject: "Business Mathematics", title: "Class 12 Business Mathematics" }
-                    ]
-                },
-                {
-                    header: "BBS (1st, 2nd & 3rd Year)",
-                    items: [
-                        { subject: "BBS 1st Year", title: "Business Statistics, English, Microeconomics, Accounting, POM" },
-                        { subject: "BBS 2nd Year", title: "Business Comm, Macroeconomics, Cost Acc, Finance, OB & HRM" },
-                        { subject: "BBS 3rd Year", title: "Business Law, Marketing, Environment, Taxation, Entrepreneurship" }
-                    ]
-                },
-                {
-                    header: "BBS 4th Year (Specialization)",
-                    items: [
-                        { subject: "Core Subjects", title: "Entrepreneurship, Research Methods, Final Project" },
-                        { subject: "Accounting Group", title: "Theory, Auditing, Corporate Taxation" },
-                        { subject: "Finance Group", title: "Corporate Finance, Bank Management, Investment" },
-                        { subject: "Marketing Group", title: "Consumer Behavior, Sales, International Marketing" },
-                        { subject: "Management Group", title: "Int'l Business, SME, Strategic Management" }
-                    ]
-                },
-                {
-                    header: "Loksewa & Banking Preparation",
-                    items: [
-                        { subject: "Loksewa", title: "Kharidar, Naayab Subba, Shaakha Adhikrit, TSC" },
-                        { subject: "Banking", title: "NRB, RBB, ADBL, NBL Preparation Notes" },
-                        { subject: "Private Banks", title: "Nabil, NIC Asia, Global IME GK & IQ" }
-                    ]
-                }
-            ];
+        function showSection(id) {
+            document.querySelectorAll('.section-view').forEach(s => s.classList.add('hidden'));
+            document.getElementById(id).classList.remove('hidden');
+            if(window.innerWidth < 768) toggleSidebar();
+        }
 
-            const contentArea = document.getElementById('contentArea');
-            contentArea.innerHTML = sections.map(sec => `
-                <div class="mb-16">
-                    <h2 class="text-3xl font-bold text-gray-800 category-title">${sec.header}</h2>
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        ${sec.items.map(item => `
-                            <div class="bg-white rounded-3xl p-6 shadow-sm border border-gray-100 hover:shadow-xl transition duration-300">
-                                <div class="flex items-center gap-4 mb-4">
-                                    <div class="w-12 h-12 bg-blue-100 text-blue-700 rounded-2xl flex items-center justify-center text-xl">
-                                        <i class="fa-solid fa-file-lines"></i>
-                                    </div>
-                                    <h3 class="font-bold text-lg text-gray-800">${item.subject}</h3>
-                                </div>
-                                <p class="text-gray-500 text-sm mb-6">${item.title}</p>
-                                <button onclick="alert('${item.subject} PDF  ...')" 
-                                        class="w-full py-3 bg-green-600 text-white font-bold rounded-2xl hover:bg-green-700 transition">
-                                    <i class="fa-solid fa-download mr-2"></i> PDF 
-                                </button>
-                            </div>
-                        `).join('')}
+        function showSubSection(cat) {
+            activeCategory = cat;
+            document.getElementById('currentCategory').innerText = cat.toUpperCase() + " Resources";
+            showSection('contentSection');
+            renderNotes();
+        }
+
+        // Mock Data Storage (Local Storage used for demo admin updates)
+        let notes = [
+            { id: 1, category: 'neb12', title: 'English: Roosevelt Notes', link: '#' },
+            { id: 2, category: 'nrb', title: 'Banking Laws & Acts 2081', link: '#' }
+        ];
+
+        function renderNotes() {
+            const list = document.getElementById('fileList');
+            const filtered = notes.filter(n => n.category === activeCategory);
+            list.innerHTML = filtered.map(n => `
+                <div class="bg-white p-6 rounded-3xl shadow-sm border border-gray-100 hover:shadow-md transition">
+                    <div class="w-12 h-12 bg-blue-100 text-blue-700 rounded-2xl flex items-center justify-center text-xl mb-4">
+                        <i class="fa-solid fa-file-pdf"></i>
+                    </div>
+                    <h3 class="font-bold text-gray-800 truncate">${n.title}</h3>
+                    <div class="mt-6 flex gap-3">
+                        <a href="${n.link}" target="_blank" class="flex-1 py-3 bg-blue-50 text-blue-700 rounded-xl text-center text-sm font-bold hover:bg-blue-100">View Online</a>
+                        <a href="${n.link}" download class="flex-1 py-3 bg-green-600 text-white rounded-xl text-center text-sm font-bold hover:bg-green-700">Download</a>
+                        ${isAdmin ? `<button onclick="deleteNote(${n.id})" class="px-4 bg-red-50 text-red-500 rounded-xl"><i class="fa-solid fa-trash"></i></button>` : ''}
                     </div>
                 </div>
-            `).join('');
+            `).join('') + (filtered.length === 0 ? '<p class="text-gray-400">No notes available here yet.</p>' : '');
+        }
+
+        // Admin Functions
+        document.getElementById('uploadBtn').onclick = () => document.getElementById('uploadModal').classList.remove('hidden');
+        function closeModal() { document.getElementById('uploadModal').classList.add('hidden'); }
+
+        function saveNote() {
+            const title = document.getElementById('fileTitle').value;
+            const link = document.getElementById('fileLink').value;
+            if(!title || !link) return alert("Fill all fields");
+            
+            notes.push({ id: Date.now(), category: activeCategory, title: title, link: link });
+            closeModal();
+            renderNotes();
+        }
+
+        function deleteNote(id) {
+            if(confirm("Confirm Delete?")) {
+                notes = notes.filter(n => n.id !== id);
+                renderNotes();
+            }
         }
     </script>
 </body>
