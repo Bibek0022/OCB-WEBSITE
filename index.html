@@ -1,3 +1,40 @@
+<!-;<!DOCTYPE html>
+<html lang="ne">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OCB - NEB Commerce & BBS Notes</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+        body { font-family: 'Poppins', sans-serif; }
+        .hero-bg { background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.85)), url('https://source.unsplash.com/random/1920x1080/?students,nepal') center/cover; }
+    </style>
+</head>
+<body class="bg-gray-50">
+
+    <!-- Login Screen -->
+    <div id="loginScreen" class="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-900 to-blue-700">
+        <div class="bg-white rounded-3xl shadow-2xl p-10 w-full max-w-md mx-4">
+            <div class="text-center mb-8">
+                <div class="w-20 h-20 bg-blue-700 rounded-3xl mx-auto flex items-center justify-center text-white text-5xl font-bold">OCB</div>
+                <h1 class="text-4xl font-bold text-blue-700 mt-6">OCB Education</h1>
+                <p class="text-gray-600 mt-2">NEB & BBS Notes</p>
+            </div>
+            
+            <h2 class="text-2xl font-semibold text-center mb-6">लग इन गर्नुहोस्</h2>
+            <input id="email" type="email" placeholder="इमेल" class="w-full px-5 py-4 border rounded-2xl mb-4">
+            <input id="password" type="password" placeholder="पासवर्ड" class="w-full px-5 py-4 border rounded-2xl mb-6">
+            <button onclick="handleLogin()" class="w-full py-4 bg-blue-700 text-white font-semibold rounded-2xl text-lg">लग इन गर्नुहोस्</button>
+            
+            <p class="text-center text-sm text-gray-500 mt-6">
+                User: user@ocb.com / OCB2078<br>
+                Admin: admin@ocb.com / ADMIN2002#
+            </p>
+        </div>
+    </div>
 
     <!-- Main App -->
     <div id="mainApp" class="hidden">
@@ -10,31 +47,7 @@
                 <button onclick="logout()" class="px-6 py-3 bg-red-600 text-white rounded-2xl">लग आउट</button>
             </div>
         </nav>
-
-        <div class="max-w-7xl mx-auto px-6 py-12" id="contentArea"></div>
-    </div>
-
-    <script>
-        function handleLogin() {
-            const email = document.getElementById('email').value.trim();
-            const password = document.getElementById('password').value.trim();
-
-            if ((email === "user@ocb.com" && password === "OCB2078") || 
-                (email === "admin@ocb.com" && password === "ADMIN2002#")) {
-                
-                document.getElementById('loginScreen').classList.add('hidden');
-                document.getElementById('mainApp').classList.remove('hidden');
-                renderContent();
-            } else {
-                alert("❌ गलत इमेल वा पासवर्ड!\n\nसही credentials माथि हेर्नुहोस्");
-            }
         }
-
-        function logout() {
-            location.reload();
-        }
-
-    <!-- ==================== MAIN APP ==================== -->
     <div id="mainApp" class="hidden">
         <nav class="bg-white shadow-md sticky top-0 z-50">
             <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
