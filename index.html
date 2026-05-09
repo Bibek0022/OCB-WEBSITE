@@ -1,317 +1,270 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ne">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>OCB \u2013 Free Learning Hub</title>
-  <link href="https://drive.google.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
-  <style>
-    :root {
-      --bg: #f5f2eb;
-      --ink: #1a1a18;
-      --accent: #c0392b;
-      --accent2: #e8d5b7;
-      --muted: #6b6560;
-      --card: #fffdf7;
-      --border: #d9d3c7;
-    }
-
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      font-family: 'DM Sans', sans-serif;
-      background: var(--bg);
-      color: var(--ink);
-      font-size: 16px;
-      line-height: 1.65;
-    }
-
-    /* \u2500\u2500\u2500 NAV \u2500\u2500\u2500 */
-    nav {
-      position: sticky; top: 0; z-index: 100;
-      background: var(--ink);
-      padding: 0 2rem;
-      display: flex; align-items: center; justify-content: space-between;
-      height: 60px;
-    }
-    .nav-logo {
-      font-family: 'Playfair Display', serif;
-      color: var(--accent2);
-      font-size: 1.4rem;
-      letter-spacing: 0.02em;
-    }
-    .nav-links { display: flex; gap: 2rem; list-style: none; }
-    .nav-links a {
-      color: #ccc; text-decoration: none;
-      font-size: 0.9rem; font-weight: 500;
-      letter-spacing: 0.04em;
-      transition: color 0.2s;
-    }
-    .nav-links a:hover { color: var(--accent2); }
-
-    /* \u2500\u2500\u2500 HERO \u2500\u2500\u2500 */
-    #home {
-      min-height: 92vh;
-      display: flex; align-items: center;
-      padding: 4rem 2rem;
-      position: relative; overflow: hidden;
-    }
-    .hero-bg {
-      position: absolute; inset: 0;
-      background: repeating-linear-gradient(
-        0deg,
-        transparent,
-        transparent 39px,
-        var(--border) 40px
-      );
-      opacity: 0.5;
-    }
-    .hero-content { position: relative; max-width: 820px; margin: 0 auto; }
-    .hero-tag {
-      display: inline-block;
-      background: var(--accent);
-      color: #fff;
-      font-size: 0.75rem; font-weight: 500;
-      letter-spacing: 0.12em; text-transform: uppercase;
-      padding: 0.3rem 0.9rem; border-radius: 2px;
-      margin-bottom: 1.5rem;
-    }
-    h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2.8rem, 7vw, 5.5rem);
-      line-height: 1.08;
-      margin-bottom: 1.2rem;
-    }
-    h1 span { color: var(--accent); }
-    .hero-desc {
-      font-size: 1.1rem; color: var(--muted);
-      max-width: 520px; margin-bottom: 2.2rem;
-    }
-    .btn-group { display: flex; gap: 1rem; flex-wrap: wrap; }
-    .btn {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      padding: 0.75rem 1.8rem;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.95rem; font-weight: 500;
-      border-radius: 3px;
-      text-decoration: none;
-      cursor: pointer; border: none;
-      transition: all 0.2s;
-    }
-    .btn-primary {
-      background: var(--accent); color: #fff;
-    }
-    .btn-primary:hover { background: #a93226; transform: translateY(-1px); }
-    .btn-outline {
-      background: transparent; color: var(--ink);
-      border: 1.5px solid var(--ink);
-    }
-    .btn-outline:hover { background: var(--ink); color: #fff; }
-
-    /* \u2500\u2500\u2500 YOUTUBE STRIP \u2500\u2500\u2500 */
-    .yt-strip {
-      background: var(--ink); color: #fff;
-      padding: 1rem 2rem;
-      display: flex; align-items: center; justify-content: center;
-      gap: 1.5rem; flex-wrap: wrap;
-      font-size: 0.95rem;
-    }
-    .yt-strip a {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      color: #ff4e45; font-weight: 500; text-decoration: none;
-    }
-    .yt-strip a:hover { text-decoration: underline; }
-    .yt-icon { font-size: 1.4rem; }
-
-    /* \u2500\u2500\u2500 SECTIONS \u2500\u2500\u2500 */
-    section { padding: 5rem 2rem; }
-    .section-inner { max-width: 980px; margin: 0 auto; }
-    .section-label {
-      font-size: 0.72rem; font-weight: 500;
-      letter-spacing: 0.14em; text-transform: uppercase;
-      color: var(--accent); margin-bottom: 0.5rem;
-    }
-    h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(1.9rem, 4vw, 2.8rem);
-      margin-bottom: 0.6rem;
-    }
-    .section-sub {
-      color: var(--muted); font-size: 1rem;
-      margin-bottom: 2.8rem; max-width: 500px;
-    }
-
-    /* \u2500\u2500\u2500 CARDS GRID \u2500\u2500\u2500 */
-    .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.4rem; }
-    .card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      padding: 1.6rem;
-      transition: box-shadow 0.2s, transform 0.2s;
-    }
-    .card:hover { box-shadow: 4px 4px 0 var(--accent); transform: translate(-2px,-2px); }
-    .card-icon { font-size: 1.8rem; margin-bottom: 0.8rem; }
-    .card h3 { font-size: 1.05rem; margin-bottom: 0.5rem; }
-    .card p { font-size: 0.88rem; color: var(--muted); margin-bottom: 1rem; }
-    .card a {
-      font-size: 0.85rem; font-weight: 500;
-      color: var(--accent); text-decoration: none;
-      border-bottom: 1px solid var(--accent);
-      padding-bottom: 1px;
-    }
-    .card a:hover { opacity: 0.75; }
-
-    /* \u2500\u2500\u2500 NOTES SECTION \u2500\u2500\u2500 */
-    #notes { background: var(--card); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-    .notes-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1rem; }
-    .note-item {
-      display: flex; align-items: flex-start; gap: 0.9rem;
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      padding: 1.1rem 1.2rem;
-      text-decoration: none; color: inherit;
-      transition: background 0.2s, box-shadow 0.2s;
-    }
-    .note-item:hover { background: var(--accent2); box-shadow: 2px 2px 0 var(--accent); }
-    .note-num {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.5rem; font-weight: 900;
-      color: var(--accent); line-height: 1; flex-shrink: 0;
-    }
-    .note-meta strong { display: block; font-size: 0.95rem; margin-bottom: 0.2rem; }
-    .note-meta span { font-size: 0.8rem; color: var(--muted); }
-
-    /* \u2500\u2500\u2500 VIDEOS SECTION \u2500\u2500\u2500 */
-    .video-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.4rem; }
-    .video-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      overflow: hidden;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-    .video-card:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0,0,0,0.1); }
-    .video-thumb {
-      position: relative;
-      background: var(--ink);
-      aspect-ratio: 16/9;
-      display: flex; align-items: center; justify-content: center;
-    }
-    .video-thumb img { width: 100%; height: 100%; object-fit: cover; opacity: 0.85; }
-    .play-btn {
-      position: absolute;
-      width: 52px; height: 52px;
-      background: var(--accent);
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.3rem; color: #fff;
-      box-shadow: 0 2px 12px rgba(192,57,43,0.5);
-    }
-    .video-info { padding: 1rem 1.2rem; }
-    .video-info h4 { font-size: 0.95rem; margin-bottom: 0.3rem; }
-    .video-info span { font-size: 0.8rem; color: var(--muted); }
-    .video-info a {
-      display: inline-block; margin-top: 0.7rem;
-      font-size: 0.82rem; color: var(--accent);
-      text-decoration: none; font-weight: 500;
-    }
-
-    /* \u2500\u2500\u2500 CONTACT \u2500\u2500\u2500 */
-    #contact { background: var(--ink); color: #e8e8e0; }
-    #contact h2 { color: var(--accent2); }
-    #contact .section-sub { color: #9e9a94; }
-    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
-    @media (max-width: 620px) { .contact-grid { grid-template-columns: 1fr; } }
-    .contact-item { display: flex; gap: 1rem; align-items: flex-start; margin-bottom: 1.4rem; }
-    .contact-icon {
-      width: 40px; height: 40px; flex-shrink: 0;
-      background: rgba(255,255,255,0.07);
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.1rem;
-    }
-    .contact-item strong { display: block; font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.2rem; }
-    .contact-item a { color: #e8e8e0; text-decoration: none; }
-    .contact-item a:hover { color: var(--accent2); }
-    .contact-form-hint { color: #9e9a94; font-size: 0.9rem; line-height: 1.6; padding: 1.4rem; background: rgba(255,255,255,0.04); border-radius: 4px; border-left: 3px solid var(--accent); }
-
-    /* \u2500\u2500\u2500 FOOTER \u2500\u2500\u2500 */
-    footer {
-      background: #111;
-      color: #666;
-      text-align: center;
-      padding: 1.5rem;
-      font-size: 0.82rem;
-    }
-
-    /* \u2500\u2500\u2500 DIVIDER \u2500\u2500\u2500 */
-    .divider { border: none; border-top: 1px solid var(--border); margin: 0; }
-
-    /* \u2500\u2500\u2500 SCROLL FADE \u2500\u2500\u2500 */
-    .fade-in {
-      opacity: 0; transform: translateY(20px);
-      transition: opacity 0.5s ease, transform 0.5s ease;
-    }
-    .fade-in.visible { opacity: 1; transform: translateY(0); }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OCB - Nepal's Smart Learning Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+        body { font-family: 'Poppins', sans-serif; }
+        
+        .hero-bg {
+            background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.8)), 
+                        url('https://source.unsplash.com/random/1920x1080/?students,nepal') center/cover no-repeat;
+        }
+        .card-hover:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.15);
+        }
+    </style>
 </head>
-<body>
+<body class="bg-gray-50">
 
-<!-- NAV -->
-<nav>
-  <div class="nav-logo">OCB</div>
-  <ul class="nav-links">
-    <li><a href="#home">Home</a></li>
-    <li><a href="#about">About</a></li>
-    <li><a href="#notes">Notes</a></li>
-    <li><a href="#videos">Videos</a></li>
-    <li><a href="#contact">98**********</a></li>
-  </ul>
-</nav>
+    <!-- Navbar -->
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-11 h-11 bg-blue-700 rounded-2xl flex items-center justify-center text-white text-3xl font-bold">OCB</div>
+                <h1 class="text-3xl font-bold text-blue-700">OCB</h1>
+            </div>
+            
+            <div class="hidden md:flex items-center gap-8 font-medium">
+                <a href="#" class="hover:text-blue-600">होम</a>
+                <a href="#resources" class="hover:text-blue-600">स्रोतहरु</a>
+                <a href="#categories" class="hover:text-blue-600">कोर्सहरु</a>
+                <a href="#" class="hover:text-blue-600">Live Classes</a>
+            </div>
+            
+            <div class="flex items-center gap-4">
+                <button onclick="showLoginModal('user')" 
+                        class="px-6 py-2.5 border border-blue-600 text-blue-600 font-semibold rounded-2xl hover:bg-blue-50">
+                    User Login
+                </button>
+                <button onclick="showLoginModal('admin')" 
+                        class="px-6 py-2.5 bg-blue-700 text-white font-semibold rounded-2xl hover:bg-blue-800">
+                    Admin Login
+                </button>
+            </div>
+        </div>
+    </nav>
 
-<!-- HERO -->
-<section id="home">
-  <div class="hero-bg"></div>
-  <div class="hero-content">
-    <div class="hero-tag">Free Educational Platform</div>
-    <h1>Learn Smart,<br/>Learn <span>Free.</span></h1>
-    <p class="hero-desc">
-      OCB ma notes, videos, ra general knowledge sabai ek thau ma. Banking, Computer, ra competitive exam ko lagi tayar gariyeko.
-    </p>
-    <div class="btn-group">
-      <a href="#notes" class="btn btn-primary">\ud83d\udcc4 Browse Notes</a>
-      <a href="#videos" class="btn btn-outline">\u25b6 Watch Videos</a>
+    <!-- Hero Section -->
+    <section class="hero-bg h-screen flex items-center text-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="max-w-2xl">
+                <h1 class="text-5xl md:text-6xl font-bold leading-tight">
+                    तपाईंको सपना पूरा गर्ने <span class="text-yellow-400">सिकाइ यात्रा</span>
+                </h1>
+                <p class="mt-6 text-xl text-gray-200">
+                    NEB, BBS, Banking र Loksewa को लागि गुणस्तरीय नोट्स, भिडियो लेक्चर र अभ्यास सामग्री
+                </p>
+                <div class="mt-10 flex gap-4">
+                    <button onclick="document.getElementById('resources').scrollIntoView({behavior:'smooth'})" 
+                            class="px-8 py-4 bg-yellow-400 text-black font-bold rounded-2xl text-lg">
+                        स्रोतहरु हेर्नुहोस्
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories -->
+    <section id="categories" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-12">हाम्रा मुख्य कोर्सहरु</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="bg-white border border-gray-200 p-8 rounded-3xl text-center card-hover cursor-pointer">
+                    <div class="text-5xl mb-4">📚</div>
+                    <h3 class="font-bold text-xl">NEB (Class 11 & 12)</h3>
+                </div>
+                <div class="bg-white border border-gray-200 p-8 rounded-3xl text-center card-hover cursor-pointer">
+                    <div class="text-5xl mb-4">💼</div>
+                    <h3 class="font-bold text-xl">BBS / BBA</h3>
+                </div>
+                <div class="bg-white border border-gray-200 p-8 rounded-3xl text-center card-hover cursor-pointer">
+                    <div class="text-5xl mb-4">🏦</div>
+                    <h3 class="font-bold text-xl">Banking Preparation</h3>
+                </div>
+                <div class="bg-white border border-gray-200 p-8 rounded-3xl text-center card-hover cursor-pointer">
+                    <div class="text-5xl mb-4">🏛️</div>
+                    <h3 class="font-bold text-xl">Loksewa Preparation</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resources Section -->
+    <section id="resources" class="py-20 bg-gray-100">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-4">उपलब्ध स्रोतहरु</h2>
+            <p class="text-center text-gray-600 mb-12">नोट्स र भिडियो लेक्चरहरु</p>
+            
+            <div id="resourcesContainer" class="grid md:grid-cols-3 gap-8">
+                <!-- JS ले dynamically थपिन्छ -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center z-50">
+        <div class="bg-white rounded-3xl p-8 w-full max-w-md mx-4">
+            <h2 id="modalTitle" class="text-2xl font-bold text-center mb-6">Login</h2>
+            <input id="email" type="text" placeholder="Email / Phone Number" 
+                   class="w-full px-5 py-4 border rounded-2xl mb-4 focus:outline-none focus:border-blue-600">
+            <input id="password" type="password" placeholder="Password" 
+                   class="w-full px-5 py-4 border rounded-2xl mb-6 focus:outline-none focus:border-blue-600">
+            <button onclick="handleLogin()" 
+                    class="w-full py-4 bg-blue-700 text-white font-semibold rounded-2xl hover:bg-blue-800">
+                Login गर्नुहोस्
+            </button>
+            <button onclick="hideLoginModal()" class="mt-4 w-full text-gray-500">Cancel</button>
+        </div>
     </div>
-  </div>
-</section>
 
-<!-- YOUTUBE STRIP -->
-<div class="yt-strip">
-  <span>\ud83d\udcfa Hamro YouTube channel Lai subscribe Garnus \u2014</span>
-  <a href="https://www.youtube.com/@OnlineClassWithBibek" target="_blank">
-    <span class="yt-icon">\u25b6</span> youtube.com/@OnlineClassWithBibek
-  </a>
-  <span style="color:#666;">| Regular videos every Day</span>
-</div>
+    <!-- Admin Dashboard -->
+    <div id="adminDashboard" class="hidden min-h-screen bg-gray-100">
+        <div class="bg-white shadow p-6 flex justify-between items-center sticky top-0">
+            <h1 class="text-3xl font-bold text-blue-700">OCB Admin Panel</h1>
+            <button onclick="logout()" class="px-6 py-3 bg-red-600 text-white rounded-2xl">Logout</button>
+        </div>
+        
+        <div class="max-w-7xl mx-auto px-6 py-10">
+            <div class="grid md:grid-cols-2 gap-10">
+                <!-- Add Note -->
+                <div class="bg-white p-8 rounded-3xl shadow">
+                    <h2 class="text-2xl font-bold mb-6 flex items-center gap-3"><i class="fas fa-file-alt"></i> नयाँ नोट थप्नुहोस्</h2>
+                    <input id="noteTitle" placeholder="नोटको शीर्षक" class="w-full px-5 py-4 border rounded-2xl mb-4">
+                    <input id="noteCategory" placeholder="Category (NEB, BBS, Banking, Loksewa)" class="w-full px-5 py-4 border rounded-2xl mb-4">
+                    <textarea id="noteDesc" rows="3" placeholder="छोटो विवरण" class="w-full px-5 py-4 border rounded-2xl mb-6"></textarea>
+                    <button onclick="addNote()" class="w-full py-4 bg-green-600 text-white rounded-2xl font-semibold">नोट थप्नुहोस्</button>
+                </div>
 
-<!-- ABOUT / GENERAL INFO -->
-<section id="about">
-  <div class="section-inner fade-in">
-    <div class="section-label">General Info</div>
-    <h2>Yo Platform Kasto Cha?</h2>
-    <p class="section-sub">OCB Ek free learning hub ho Jaha Tapaile Bibhinna Notes, Videos and Educational Material Paunuhunexa \u0924\u092a\u093e\u0908\u0902\u0932\u0947 competitive exam prep ra daily learning garna saknu huncha.</p>
-    <div class="cards">
-      <div class="card">
-        <div class="card-icon">\ud83d\udcdd</div>
-        <h3>Notes Section</h3>
-        <p>Banking, NEB, Bachelor Level (BBS),General Knowledge \u2014 sabai topic ka handwritten ra typed notes freely available cha.</p>
-        <a href="#notes">Herna Janus \u2192</a>
-      </div>
-      <div class="card">
-        <div class="card-icon">\ud83c\udfa5</div>
-        <h3>Video Lectures</h3>
-        <p>YouTube Videos Link Diyeko Xa
+                <!-- Add Video -->
+                <div class="bg-white p-8 rounded-3xl shadow">
+                    <h2 class="text-2xl font-bold mb-6 flex items-center gap-3"><i class="fas fa-video"></i> नयाँ भिडियो थप्नुहोस्</h2>
+                    <input id="videoTitle" placeholder="भिडियो शीर्षक" class="w-full px-5 py-4 border rounded-2xl mb-4">
+                    <input id="videoUrl" placeholder="YouTube Link वा Video URL" class="w-full px-5 py-4 border rounded-2xl mb-4">
+                    <input id="videoCategory" placeholder="Category (NEB, BBS, Banking, Loksewa)" class="w-full px-5 py-4 border rounded-2xl mb-6">
+                    <button onclick="addVideo()" class="w-full py-4 bg-blue-700 text-white rounded-2xl font-semibold">भिडियो थप्नुहोस्</button>
+                </div>
+            </div>
+
+            <div class="mt-12">
+                <h2 class="text-2xl font-bold mb-6">थपिएका सामग्रीहरु</h2>
+                <div id="addedContent" class="space-y-4"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let contentList = [];
+
+        function showLoginModal(type) {
+            document.getElementById('loginModal').classList.remove('hidden');
+            document.getElementById('modalTitle').textContent = type === 'admin' ? 'Admin Login' : 'User Login';
+            window.currentLoginType = type;
+        }
+
+        function hideLoginModal() {
+            document.getElementById('loginModal').classList.add('hidden');
+        }
+
+        function handleLogin() {
+            const email = document.getElementById('email').value;
+            if (!email) return alert("Email/फोन नम्बर हाल्नुहोस्");
+
+            hideLoginModal();
+            
+            if (window.currentLoginType === 'admin') {
+                document.getElementById('adminDashboard').classList.remove('hidden');
+            } else {
+                alert("User Login सफल भयो! Welcome to OCB");
+            }
+        }
+
+        function logout() {
+            document.getElementById('adminDashboard').classList.add('hidden');
+        }
+
+        function addNote() {
+            const title = document.getElementById('noteTitle').value;
+            const category = document.getElementById('noteCategory').value || "General";
+            
+            if (!title) return alert("शीर्षक अनिवार्य छ");
+            
+            contentList.push({
+                type: "note",
+                title: title,
+                category: category,
+                time: new Date().toLocaleTimeString()
+            });
+            renderContent();
+            clearInputs();
+        }
+
+        function addVideo() {
+            const title = document.getElementById('videoTitle').value;
+            const url = document.getElementById('videoUrl').value;
+            const category = document.getElementById('videoCategory').value || "General";
+            
+            if (!title || !url) return alert("शीर्षक र भिडियो लिङ्क अनिवार्य छ");
+            
+            contentList.push({
+                type: "video",
+                title: title,
+                url: url,
+                category: category,
+                time: new Date().toLocaleTimeString()
+            });
+            renderContent();
+            clearInputs();
+        }
+
+        function clearInputs() {
+            document.getElementById('noteTitle').value = '';
+            document.getElementById('noteCategory').value = '';
+            document.getElementById('noteDesc').value = '';
+            document.getElementById('videoTitle').value = '';
+            document.getElementById('videoUrl').value = '';
+            document.getElementById('videoCategory').value = '';
+        }
+
+        function renderContent() {
+            const container = document.getElementById('resourcesContainer');
+            container.innerHTML = '';
+            
+            contentList.slice(0, 6).forEach(item => {
+                const div = document.createElement('div');
+                div.className = "bg-white rounded-3xl overflow-hidden card-hover";
+                
+                if (item.type === "note") {
+                    div.innerHTML = `
+                        <div class="p-6">
+                            <span class="text-green-600 text-sm font-medium">📝 ${item.category}</span>
+                            <h3 class="font-semibold text-xl mt-3">${item.title}</h3>
+                            <p class="text-sm text-gray-500 mt-1">${item.time}</p>
+                        </div>
+                    `;
+                } else {
+                    div.innerHTML = `
+                        <div class="p-6">
+                            <span class="text-blue-600 text-sm font-medium">🎥 ${item.category}</span>
+                            <h3 class="font-semibold text-xl mt-3">${item.title}</h3>
+                            <a href="${item.url}" target="_blank" class="text-blue-600 text-sm mt-4 inline-block">भिडियो हेर्नुहोस् →</a>
+                        </div>
+                    `;
+                }
+                container.appendChild(div);
+            });
+        }
+
+        // Modal close on outside click
+        document.getElementById('loginModal').addEventListener('click', (e) => {
+            if (e.target === document.getElementById('loginModal')) hideLoginModal();
+        });
+    </script>
+</body>
+</html>
