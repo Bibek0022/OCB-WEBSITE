@@ -3,230 +3,269 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OCB - नेपालको उत्कृष्ट सिकाइ केन्द्र</title>
+    <title>OCB - Nepal's Smart Learning Platform</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
         body { font-family: 'Poppins', sans-serif; }
-        .hero-bg {
-            background: linear-gradient(rgba(0,0,0,0.78), rgba(0,0,0,0.85)), 
-                        url('https://source.unsplash.com/random/1920x1080/?nepal,students') center/cover;
-        }
-        .card-hover:hover { transform: translateY(-12px); box-shadow: 0 25px 30px -10px rgb(0 0 0 / 0.2); }
+        .hero-bg { background: linear-gradient(rgba(0,0,0,0.82), rgba(0,0,0,0.88)), url('https://source.unsplash.com/random/1920x1080/?nepal,students') center/cover; }
+        .notice-bar { animation: marquee 45s linear infinite; }
+        @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-100%); } }
     </style>
 </head>
 <body class="bg-gray-50">
 
-    <!-- Navbar -->
-    <nav class="bg-white shadow-lg sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
-            <div class="flex items-center gap-3">
-                <div class="w-12 h-12 bg-blue-700 rounded-3xl flex items-center justify-center text-white text-4xl font-bold">OCB</div>
-                <h1 class="text-3xl font-bold text-blue-700">OCB</h1>
+    <!-- Login Screen -->
+    <div id="loginScreen" class="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-900 to-blue-700">
+        <div class="bg-white rounded-3xl shadow-2xl p-10 w-full max-w-md mx-4">
+            <div class="text-center mb-8">
+                <div class="flex justify-center gap-4">
+                    <div class="w-16 h-16 bg-blue-700 rounded-3xl flex items-center justify-center text-white text-5xl font-bold">OCB</div>
+                    <div class="w-16 h-16 bg-red-600 rounded-3xl flex items-center justify-center text-white text-xl font-bold">Bibek</div>
+                </div>
+                <h1 class="text-4xl font-bold text-blue-700 mt-6">OCB Education</h1>
+                <p class="text-gray-600">Powered by OnlineClassWithBibek</p>
             </div>
             
-            <div class="flex items-center gap-4">
-                <button onclick="showLoginModal('user')" class="px-6 py-3 border-2 border-blue-700 text-blue-700 font-semibold rounded-2xl hover:bg-blue-50">विद्यार्थी लग इन</button>
-                <button onclick="showLoginModal('admin')" class="px-6 py-3 bg-blue-700 text-white font-semibold rounded-2xl hover:bg-blue-800">एडमिन लग इन</button>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Hero -->
-    <section class="hero-bg h-screen flex items-center text-white">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="max-w-2xl">
-                <h1 class="text-5xl md:text-6xl font-bold leading-tight">तपाईंको सपनालाई साकार बनाउने प्लेटफर्म</h1>
-                <p class="mt-6 text-xl">NEB • BBS • Banking • Loksewa</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Resources -->
-    <section id="resources" class="py-20 bg-gray-100">
-        <div class="max-w-7xl mx-auto px-6">
-            <h2 class="text-4xl font-bold text-center mb-12">उपलब्ध सामग्रीहरु</h2>
-            <div id="resourcesContainer" class="grid md:grid-cols-3 gap-8"></div>
-        </div>
-    </section>
-
-    <!-- Login Modal -->
-    <div id="loginModal" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center z-50">
-        <div class="bg-white rounded-3xl p-8 w-full max-w-md mx-4">
-            <h2 id="modalTitle" class="text-2xl font-bold text-center mb-6">लग इन गर्नुहोस्</h2>
-            <input id="email" type="email" placeholder="इमेल" class="w-full px-5 py-4 border rounded-2xl mb-4">
-            <input id="password" type="password" placeholder="पासवर्ड" class="w-full px-5 py-4 border rounded-2xl mb-6">
-            <button onclick="handleLogin()" class="w-full py-4 bg-blue-700 text-white font-semibold rounded-2xl">लग इन</button>
-            <button onclick="hideLoginModal()" class="mt-4 w-full text-gray-500">रद्द गर्नुहोस्</button>
+            <h2 class="text-2xl font-semibold text-center mb-6">  </h2>
+            <input id="email" type="email" placeholder="" class="w-full px-5 py-4 border rounded-2xl mb-4">
+            <input id="password" type="password" placeholder="" class="w-full px-5 py-4 border rounded-2xl mb-6">
+            <button onclick="handleLogin()" class="w-full py-4 bg-blue-700 text-white font-semibold rounded-2xl text-lg">  </button>
+            
+            <p class="text-center text-sm text-gray-500 mt-6">
+                User: user@ocb.com / OCB2078<br>
+                Admin: admin@ocb.com / ADMIN2002#
+            </p>
         </div>
     </div>
 
-    <!-- Admin Dashboard -->
-    <div id="adminDashboard" class="hidden min-h-screen bg-gray-100">
-        <div class="bg-white p-6 flex justify-between items-center shadow sticky top-0">
-            <h1 class="text-3xl font-bold text-blue-700">OCB एडमिन प्यानल</h1>
-            <button onclick="logout()" class="px-6 py-3 bg-red-600 text-white rounded-2xl">लग आउट</button>
-        </div>
-        <div class="max-w-7xl mx-auto px-6 py-10">
-            <div class="grid md:grid-cols-2 gap-10">
-                <div class="bg-white p-8 rounded-3xl shadow">
-                    <h2 class="text-2xl font-bold mb-6">📄 नयाँ PDF / नोट थप्नुहोस्</h2>
-                    <input id="noteTitle" placeholder="शीर्षक" class="w-full px-5 py-4 border rounded-2xl mb-4">
-                    <input id="noteCategory" placeholder="कोटि (NEB, BBS, Banking, Loksewa)" class="w-full px-5 py-4 border rounded-2xl mb-4">
-                    <input id="pdfLink" placeholder="PDF Direct Link (वा फाइल नाम)" class="w-full px-5 py-4 border rounded-2xl mb-6">
-                    <button onclick="addPDF()" class="w-full py-4 bg-green-600 text-white rounded-2xl font-semibold">PDF थप्नुहोस्</button>
+    <!-- Main App -->
+    <div id="mainApp" class="hidden">
+        <nav class="bg-white shadow-md sticky top-0 z-50">
+            <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+                <div class="flex items-center gap-4">
+                    <div class="w-11 h-11 bg-blue-700 rounded-3xl flex items-center justify-center text-white text-4xl font-bold">OCB</div>
+                    <h1 class="text-3xl font-bold text-blue-700">OCB</h1>
                 </div>
+                <button onclick="logout()" class="px-6 py-3 bg-red-600 text-white rounded-2xl"> </button>
+            </div>
+        </nav>
 
-                <div class="bg-white p-8 rounded-3xl shadow">
-                    <h2 class="text-2xl font-bold mb-6">🎥 नयाँ भिडियो थप्नुहोस्</h2>
-                    <input id="videoTitle" placeholder="भिडियो शीर्षक" class="w-full px-5 py-4 border rounded-2xl mb-4">
-                    <input id="videoUrl" placeholder="YouTube Link" class="w-full px-5 py-4 border rounded-2xl mb-6">
-                    <button onclick="addVideo()" class="w-full py-4 bg-blue-700 text-white rounded-2xl font-semibold">भिडियो थप्नुहोस्</button>
-                </div>
+        <div class="bg-yellow-400 py-3 text-black font-medium overflow-hidden">
+            <div class="notice-bar whitespace-nowrap">
+                 NEB Class 12 New Batch  | OnlineClassWithBibek Live Class     | BBS 4th Year Notes  | Loksewa & Banking Preparation Giveaway   |
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-6 py-12">
+            <h2 class="text-4xl font-bold text-center mb-12"> - New Syllabus </h2>
+            <div id="contentArea" class="space-y-20"></div>
+        </div>
+    </div>
+
+    <!-- Admin Button -->
+    <button id="adminBtn" onclick="toggleAdminModal()" 
+            class="hidden fixed bottom-8 right-8 w-16 h-16 bg-blue-700 text-white text-4xl rounded-full shadow-2xl flex items-center justify-center hover:bg-blue-800">
+        +
+    </button>
+
+    <!-- Admin Modal -->
+    <div id="adminModal" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center z-50">
+        <div class="bg-white rounded-3xl p-8 w-full max-w-lg mx-4">
+            <h2 class="text-2xl font-bold mb-6">  </h2>
+            <select id="mainCategory" class="w-full px-5 py-4 border rounded-2xl mb-4">
+                <option value="NEB11">NEB Class 11</option>
+                <option value="NEB12">NEB Class 12</option>
+                <option value="BBS1">BBS 1st Year</option>
+                <option value="BBS2">BBS 2nd Year</option>
+                <option value="BBS3">BBS 3rd Year</option>
+                <option value="BBS4">BBS 4th Year</option>
+                <option value="Loksewa">Loksewa</option>
+                <option value="Banking">Banking</option>
+            </select>
+            <input id="subject" placeholder="Subject / Section" class="w-full px-5 py-4 border rounded-2xl mb-4">
+            <input id="title" placeholder=" /  " class="w-full px-5 py-4 border rounded-2xl mb-4">
+            <input id="link" placeholder="PDF Link  YouTube Link" class="w-full px-5 py-4 border rounded-2xl mb-6">
+            <div class="flex gap-4">
+                <button onclick="addResource()" class="flex-1 py-4 bg-green-600 text-white rounded-2xl"></button>
+                <button onclick="toggleAdminModal()" class="flex-1 py-4 bg-gray-300 rounded-2xl"> </button>
             </div>
         </div>
     </div>
 
     <script>
         let resources = [];
+        let currentUser = null;
 
         const ADMIN_EMAIL = "admin@ocb.com";
         const ADMIN_PASS = "ADMIN2002#";
         const USER_EMAIL = "user@ocb.com";
         const USER_PASS = "OCB2078";
 
-        let currentUser = null;
-
-        function showLoginModal(type) {
-            document.getElementById('loginModal').classList.remove('hidden');
-            document.getElementById('modalTitle').textContent = type === 'admin' ? 'एडमिन लग इन' : 'विद्यार्थी लग इन';
-        }
-
-        function hideLoginModal() {
-            document.getElementById('loginModal').classList.add('hidden');
-        }
-
         function handleLogin() {
             const email = document.getElementById('email').value.trim();
             const pass = document.getElementById('password').value.trim();
 
-            if (email === ADMIN_EMAIL && pass === ADMIN_PASS) {
-                currentUser = 'admin';
-                hideLoginModal();
-                document.getElementById('adminDashboard').classList.remove('hidden');
-            } else if (email === USER_EMAIL && pass === USER_PASS) {
-                currentUser = 'user';
-                hideLoginModal();
-                alert("स्वागत छ! OCB मा सफल लग इन भयो।");
+            if ((email === ADMIN_EMAIL && pass === ADMIN_PASS) || (email === USER_EMAIL && pass === USER_PASS)) {
+                currentUser = email === ADMIN_EMAIL ? 'admin' : 'user';
+                document.getElementById('loginScreen').classList.add('hidden');
+                document.getElementById('mainApp').classList.remove('hidden');
+                if (currentUser === 'admin') document.getElementById('adminBtn').classList.remove('hidden');
+                renderContent();
             } else {
-                alert("गलत इमेल वा पासवर्ड!");
+                alert("   !");
             }
         }
 
-        function logout() {
-            currentUser = null;
-            document.getElementById('adminDashboard').classList.add('hidden');
+        function logout() { location.reload(); }
+        function toggleAdminModal() { document.getElementById('adminModal').classList.toggle('hidden'); }
+
+        function addResource() {
+            const category = document.getElementById('mainCategory').value;
+            const subject = document.getElementById('subject').value;
+            const title = document.getElementById('title').value;
+            const link = document.getElementById('link').value;
+
+            if (!subject || !title || !link) return alert("  !");
+
+            resources.push({ category, subject, title, link, type: link.includes("youtu") ? "video" : "pdf" });
+            toggleAdminModal();
+            renderContent();
         }
 
-        // Add PDF with real download capability
-        function addPDF() {
-            if (currentUser !== 'admin') return alert("एडमिनले मात्र थप्न सक्छन्");
-            
-            const title = document.getElementById('noteTitle').value;
-            const category = document.getElementById('noteCategory').value || "General";
-            let link = document.getElementById('pdfLink').value;
-
-            if (!title) return alert("शीर्षक लेख्नुहोस्");
-
-            // यदि लिङ्क खाली छ भने sample PDF प्रयोग गर
-            if (!link) {
-                link = "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf";
-            }
-
-            resources.push({
-                type: "pdf",
-                title: title,
-                category: category,
-                downloadLink: link
-            });
-
-            renderResources();
-            clearForms();
-        }
-
-        function addVideo() {
-            if (currentUser !== 'admin') return alert("एडमिनले मात्र थप्न सक्छन्");
-            
-            const title = document.getElementById('videoTitle').value;
-            const url = document.getElementById('videoUrl').value;
-            const category = "Video";
-
-            if (!title || !url) return alert("शीर्षक र लिङ्क भर्नुहोस्");
-
-            resources.push({ type: "video", title, url, category });
-            renderResources();
-            clearForms();
-        }
-
-        function clearForms() {
-            document.getElementById('noteTitle').value = '';
-            document.getElementById('noteCategory').value = '';
-            document.getElementById('pdfLink').value = '';
-            document.getElementById('videoTitle').value = '';
-            document.getElementById('videoUrl').value = '';
-        }
-
-        function renderResources() {
-            const container = document.getElementById('resourcesContainer');
+        function renderContent() {
+            const container = document.getElementById('contentArea');
             container.innerHTML = '';
 
-            resources.forEach(item => {
-                const div = document.createElement('div');
-                div.className = "bg-white rounded-3xl p-6 card-hover";
+            const categories = {
+                "NEB11": "NEB Class 11 (New Syllabus)",
+                "NEB12": "NEB Class 12 (New Syllabus)",
+                "BBS1": "BBS 1st Year",
+                "BBS2": "BBS 2nd Year",
+                "BBS3": "BBS 3rd Year",
+                "BBS4": "BBS 4th Year",
+                "Loksewa": "Loksewa Preparation",
+                "Banking": "Banking Preparation"
+            };
 
-                if (item.type === "pdf") {
-                    div.innerHTML = `
-                        <div class="flex gap-5">
-                            <span class="text-5xl">📕</span>
-                            <div class="flex-1">
-                                <span class="text-green-600">${item.category}</span>
-                                <h3 class="font-semibold text-lg mt-2">${item.title}</h3>
-                                <a href="${item.downloadLink}" target="_blank" download 
-                                   class="mt-6 inline-block px-6 py-3 bg-green-600 text-white rounded-2xl hover:bg-green-700">
-                                    📥 PDF डाउनलोड गर्नुहोस्
-                                </a>
-                            </div>
+            Object.keys(categories).forEach(key => {
+                const filtered = resources.filter(r => r.category === key);
+                
+                let html = `
+                    <div>
+                        <h2 class="text-3xl font-bold mb-8 text-blue-700">${categories[key]}</h2>
+                        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                `;
+
+                filtered.forEach(item => {
+                    html += `
+                        <div class="bg-white rounded-3xl p-6 shadow hover:shadow-xl transition-all">
+                            <p class="text-sm font-medium text-blue-600">${item.subject}</p>
+                            <h3 class="font-semibold mt-2 text-lg">${item.title}</h3>
+                            <a href="${item.link}" target="_blank" 
+                               class="mt-6 block w-full text-center py-3.5 rounded-2xl ${item.type === 'pdf' ? 'bg-green-600' : 'bg-red-600'} text-white font-medium">
+                                ${item.type === 'pdf' ? ' PDF  ' : '  '}
+                            </a>
                         </div>
                     `;
-                } else {
-                    div.innerHTML = `
-                        <div class="flex gap-5">
-                            <span class="text-5xl">🎥</span>
-                            <div class="flex-1">
-                                <span class="text-blue-600">${item.category}</span>
-                                <h3 class="font-semibold text-lg mt-2">${item.title}</h3>
-                                <a href="${item.url}" target="_blank" 
-                                   class="mt-6 inline-block px-6 py-3 bg-blue-700 text-white rounded-2xl hover:bg-blue-800">
-                                    ▶️ भिडियो हेर्नुहोस्
-                                </a>
-                            </div>
-                        </div>
-                    `;
+                });
+
+                if (filtered.length === 0) {
+                    html += `<p class="col-span-3 text-center text-gray-400 py-12">     </p>`;
                 }
-                container.appendChild(div);
+                html += `</div></div>`;
+                container.innerHTML += html;
             });
         }
 
-        // Initial Sample Resources
+        // ==================== SAMPLE DATA ( Subject ) ====================
         window.onload = () => {
             resources = [
-                { type: "pdf", title: "Class 12 English Notes 2083", category: "NEB", downloadLink: "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf" },
-                { type: "pdf", title: "Banking GK & Current Affairs", category: "Banking", downloadLink: "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf" },
-                { type: "video", title: "Loksewa Preparation - GK Class", category: "Loksewa", url: "https://www.youtube.com/embed/dQw4w9wgxcq" }
+                // === NEB Class 11 ===
+            const class11 = [
+                { subject: "English", title: "Class 11 English New Course Notes" },
+                { subject: "Nepali", title: "Class 11 Nepali Sahitya Notes" },
+                { subject: "Accountancy", title: "Class 11 Accountancy Complete Notes" },
+                { subject: "Business Studies", title: "Class 11 Business Studies" },
+                { subject: "Economics", title: "Class 11 Economics Notes" },
+                { subject: "Business Mathematics", title: "Class 11 Business Mathematics" }
             ];
-            renderResources();
+
+            // NEB Class 12
+            const class12 = [
+                { subject: "English", title: "Class 12 English New Course Notes" },
+                { subject: "Nepali", title: "Class 12 Nepali Sahitya" },
+                { subject: "Accountancy", title: "Class 12 Accountancy Advanced Notes" },
+                { subject: "Business Studies", title: "Class 12 Business Studies" },
+                { subject: "Economics", title: "Class 12 Economics Complete Notes" },
+                { subject: "Marketing", title: "Class 12 Marketing Notes" },
+                { subject: "Business Mathematics", title: "Class 12 Business Mathematics" }
+            ];
+            // ==================== BBS ALL YEARS ====================
+            const bbsData = {
+                "BBS 1st Year": [
+                    { subject: "Business English", title: "Business English (MGT 201)" },
+                    { subject: "Business Statistics", title: "Business Statistics (MGT 202)" },
+                    { subject: "Microeconomics", title: "Microeconomics for Business (MGT 203)" },
+                    { subject: "Accounting", title: "Accounting for Financial Analysis (MGT 211)" },
+                    { subject: "Principles of Management", title: "Principles of Management (MGT 213)" }
+                ],
+                "BBS 2nd Year": [
+                    { subject: "Business Communication", title: "Business Communication (MGT 205)" },
+                    { subject: "Macroeconomics", title: "Macroeconomics for Business (MGT 206)" },
+                    { subject: "Cost Accounting", title: "Cost and Management Accounting (MGT 212)" },
+                    { subject: "Financial Management", title: "Fundamentals of Financial Management (MGT 215)" },
+                    { subject: "OB & HRM", title: "Organizational Behavior & HRM (MGT 223)" }
+                ],
+                "BBS 3rd Year": [
+                    { subject: "Business Law", title: "Business Law" },
+                    { subject: "Marketing", title: "Fundamentals of Marketing" },
+                    { subject: "Business Environment", title: "Business Environment and Strategy" },
+                    { subject: "Taxation", title: "Taxation and Auditing" },
+                    { subject: "Entrepreneurship", title: "Entrepreneurship and Enterprise Development" }
+                ],
+                // ==== BBS 4th Year ====
+const bbs4thYear = [
+  { subject: "Entrepreneurship", title: "Entrepreneurship and Enterprise Development" },
+  { subject: "Research Methods", title: "Business Research Methods" },
+  { subject: "Final Project", title: "Final Project / Internship" },
+  
+  // Concentration Areas (Choose one group)
+  // Accounting Group
+  { category: "Accounting", subject: "Accounting Theory", title: "Advanced Accounting Theory" },
+  { category: "Accounting", subject: "Auditing", title: "Advanced Auditing and Professional Ethics" },
+  { category: "Accounting", subject: "Taxation", title: "Corporate Taxation and Planning" },
+  
+  // Finance Group
+  { category: "Finance", subject: "Corporate Finance", title: "Fundamentals of Corporate Finance" },
+  { category: "Finance", subject: "Commercial Bank Management", title: "Commercial Bank Management" },
+  { category: "Finance", subject: "Investment", title: "Investment Analysis and Portfolio Management" },
+  
+  // Marketing Group
+  { category: "Marketing", subject: "Consumer Behavior", title: "Consumer Relationship Management" },
+  { category: "Marketing", subject: "Sales", title: "Fundamentals of Selling" },
+  { category: "Marketing", subject: "International Marketing", title: "International Marketing" },
+  
+  // Management Group
+  { category: "Management", subject: "International Business", title: "International Business" },
+  { category: "Management", subject: "SME", title: "Small and Medium Enterprises" },
+  { category: "Management", subject: "Strategic Management", title: "Business Policy and Strategy" }
+];
+                // === Loksewa ===
+                { category: "Loksewa", subject: "Kharidar", title: "Kharidar GK & IQ and Written", link: "#", type: "pdf" },
+                { category: "Loksewa", subject: "Naayab Subba", title: "Naayab Subba Complete Notes", link: "#", type: "pdf" },
+                { category: "Loksewa", subject: "Shaakha Adhikrit", title: "Shaakha Adhikrit Complete Notes", link: "#", type: "pdf" },
+                { category: "Loksewa", subject: "Shikshyak Sewa", title: "Teacher Service Commission (MaBi/NiMaBi) Notes", link: "#", type: "pdf" },
+
+                // === Banking ===
+                { category: "Banking", subject: "NRB", title: "Nepal Rastra Bank Preparation", link: "#", type: "pdf" },
+                { category: "Banking", subject: "RBB", title: "Rastriya Banijya Bank Notes", link: "#", type: "pdf" },
+                { category: "Banking", subject: "ADBL", title: "Agricultural Development Bank", link: "#", type: "pdf" },
+                { category: "Banking", subject: "NBL", title: "Nepal Bank Limited Preparation", link: "#", type: "pdf" },
+                { category: "Banking", subject: "Private Banks", title: "Private Banks (Nabil, NIC, Global) GK", link: "#", type: "pdf" }
+            ];
         };
     </script>
 </body>
